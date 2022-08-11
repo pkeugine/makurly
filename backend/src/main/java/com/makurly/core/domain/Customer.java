@@ -13,18 +13,21 @@ public class Customer {
     private Long id;
     private String name;
     private int age;
+    private Gender gender;
 
     protected Customer() {
     }
 
-    public Customer(String name, int age) {
+    public Customer(String name, int age, Gender gender) {
         this.name = name;
         this.age = age;
+        this.gender = gender;
     }
 
     public void updateWith(Customer other) {
         this.name = other.name;
         this.age = other.age;
+        this.gender = other.gender;
     }
 
     public Long getId() {
@@ -38,8 +41,8 @@ public class Customer {
     public int getAge() {
         return age;
     }
-}
 
-enum Gender {
-    MALE, FEMALE
+    public Gender getGender() {
+        return gender;
+    }
 }
