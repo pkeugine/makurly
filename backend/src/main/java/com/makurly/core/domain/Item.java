@@ -1,4 +1,4 @@
-package com.makurly.backend.domain;
+package com.makurly.core.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

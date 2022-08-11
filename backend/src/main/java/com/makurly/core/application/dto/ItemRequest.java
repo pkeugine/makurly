@@ -1,6 +1,6 @@
-package com.makurly.backend.application.dto;
+package com.makurly.core.application.dto;
 
-import com.makurly.backend.domain.Item;
+import com.makurly.core.domain.Item;
 
 public class ItemRequest {
 

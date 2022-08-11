@@ -1,9 +1,9 @@
-package com.makurly.backend.application;
+package com.makurly.core.application;
 
-import com.makurly.backend.application.dto.ItemRequest;
-import com.makurly.backend.application.dto.ItemResponse;
-import com.makurly.backend.domain.Item;
-import com.makurly.backend.domain.ItemRepository;
+import com.makurly.core.application.dto.ItemRequest;
+import com.makurly.core.application.dto.ItemResponse;
+import com.makurly.core.domain.Item;
+import com.makurly.core.domain.ItemRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;

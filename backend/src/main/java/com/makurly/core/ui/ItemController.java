@@ -1,8 +1,8 @@
-package com.makurly.backend.ui;
+package com.makurly.core.ui;
 
-import com.makurly.backend.application.ItemService;
-import com.makurly.backend.application.dto.ItemRequest;
-import com.makurly.backend.application.dto.ItemResponse;
+import com.makurly.core.application.ItemService;
+import com.makurly.core.application.dto.ItemRequest;
+import com.makurly.core.application.dto.ItemResponse;
 import java.net.URI;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
