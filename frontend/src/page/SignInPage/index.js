@@ -19,7 +19,7 @@ function SignInPage() {
       .post(API_SERVER + "/customers/login", body)
       .then((res) => {
         window.localStorage.setItem("isLogin", "true");
-        window.localStorage.setItem("user-id", res.data.id);
+        window.localStorage.setItem("user-id", "1");
         window.localStorage.setItem("user-name", res.data.name);
         alert("로그인 완료");
         navigate("/");
