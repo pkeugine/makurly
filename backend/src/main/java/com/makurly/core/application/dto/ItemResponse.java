@@ -6,20 +6,22 @@ public class ItemResponse {
 
     private Long id;
     private String name;
+    private String imageUrl;
 
     protected ItemResponse() {
     }
 
-    private ItemResponse(Long id, String name) {
+    private ItemResponse(Long id, String name, String imageUrl) {
         this.id = id;
         this.name = name;
+        this.imageUrl = imageUrl;
     }
 
     public static ItemResponse of(Item item) {
         return new ItemResponse(
             item.getId(),
-            item.getName()
-        );
+            item.getName(),
+            item.getImageUrl());
     }
 
     public Long getId() {
@@ -28,5 +30,9 @@ public class ItemResponse {
 
     public String getName() {
         return name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 }

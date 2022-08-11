@@ -12,12 +12,19 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String imageUrl;
 
     protected Item() {
     }
 
-    public Item(String name) {
+    public Item(String name, String imageUrl) {
         this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
+    public void updateWith(Item other) {
+        this.name = other.name;
+        this.imageUrl = other.imageUrl;
     }
 
     public Long getId() {
@@ -28,7 +35,7 @@ public class Item {
         return name;
     }
 
-    public void updateWith(Item other) {
-        this.name = other.name;
+    public String getImageUrl() {
+        return imageUrl;
     }
 }
