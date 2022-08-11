@@ -39,3 +39,7 @@ public class Customer {
         return age;
     }
 }
+
+enum Gender {
+    MALE, FEMALE
+}

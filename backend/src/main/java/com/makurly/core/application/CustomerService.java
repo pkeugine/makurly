@@ -27,10 +27,17 @@ public class CustomerService {
 
     @Transactional(readOnly = true)
     public CustomerResponse findById(Long id) {
-        return CustomerResponse.of(findUser(id));
+        return CustomerResponse.of(findCustomerById(id));
     }
 
-    private Customer findUser(Long id) {
+    public CustomerResponse findByName(CustomerRequest customerRequest) {
+        String name = customerRequest.getName();
+        Customer customer = customerRepository.findByName(name)
+            .orElseThrow(IllegalArgumentException::new);
+        return CustomerResponse.of(customer);
+    }
+
+    private Customer findCustomerById(Long id) {
         return customerRepository.findById(id)
             .orElseThrow(IllegalArgumentException::new);
     }
@@ -44,7 +51,7 @@ public class CustomerService {
     }
 
     public CustomerResponse updateById(Long id, CustomerRequest customerRequest) {
-        Customer existingCustomer = findUser(id);
+        Customer existingCustomer = findCustomerById(id);
         Customer updatedCustomer = customerRequest.toEntity();
         existingCustomer.updateWith(updatedCustomer);
         return CustomerResponse.of(existingCustomer);

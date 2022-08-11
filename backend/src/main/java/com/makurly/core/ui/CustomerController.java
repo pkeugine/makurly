@@ -5,6 +5,7 @@ import com.makurly.core.application.dto.CustomerRequest;
 import com.makurly.core.application.dto.CustomerResponse;
 import java.net.URI;
 import java.util.List;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,16 +33,22 @@ public class CustomerController {
         return ResponseEntity.created(uri).body(customerResponse);
     }
 
-    @GetMapping
-    public ResponseEntity<List<CustomerResponse>> findAllUsers() {
-        List<CustomerResponse> customerRespons = customerService.findAll();
-        return ResponseEntity.ok(customerRespons);
-    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponse> findUser(@PathVariable Long id) {
+    public ResponseEntity<CustomerResponse> findUserById(@PathVariable Long id) {
         CustomerResponse customerResponse = customerService.findById(id);
         return ResponseEntity.ok(customerResponse);
+    }
+
+    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CustomerResponse> findUserByName(@RequestBody CustomerRequest customerRequest) {
+        CustomerResponse customerResponse = customerService.findByName(customerRequest);
+        return ResponseEntity.ok(customerResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CustomerResponse>> findAllUsers() {
+        List<CustomerResponse> customerResponses = customerService.findAll();
+        return ResponseEntity.ok(customerResponses);
     }
 
     @PatchMapping("/{id}")
