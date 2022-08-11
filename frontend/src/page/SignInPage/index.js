@@ -18,9 +18,8 @@ function SignInPage() {
     axios
       .post(API_SERVER + "/customers/login", body)
       .then((res) => {
-        console.log(res.data);
-        window.localStorage.setItem("isLogin", true);
-        window.localStroage.setItem("user-id", res.data.id);
+        window.localStorage.setItem("isLogin", "true");
+        window.localStorage.setItem("user-id", res.data.id);
         window.localStorage.setItem("user-name", res.data.name);
         alert("로그인 완료");
         navigate("/");
@@ -36,7 +35,7 @@ function SignInPage() {
         <div>User Name</div>
         <input type="text" onChange={nameHandler}></input>
       </div>
-      <button onClick={signIn}>sign-up</button>
+      <button onClick={signIn}>sign-in</button>
     </div>
   );
 }
