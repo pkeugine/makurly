@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function RegisterPage() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
+  const [gender, setGender] = useState("MALE");
   const navigate = useNavigate();
   const nameHandler = (e) => {
     setName(e.target.value);
@@ -14,10 +15,12 @@ function RegisterPage() {
   const ageHandler = (e) => {
     setAge(e.target.value);
   };
+
   const register = () => {
     const body = {
       name: name,
       age: age,
+      gender: gender,
     };
     axios
       .post(API_SERVER + "/customers", body)
@@ -39,6 +42,29 @@ function RegisterPage() {
       <div className="age-container">
         <div>Age</div>
         <input type="text" onChange={ageHandler}></input>
+
+        <div>
+          MALE
+          <input
+            type="radio"
+            id="MALE"
+            name="gender"
+            checked={gender === "MALE"}
+            onChange={() => {
+              setGender("MALE");
+            }}
+          ></input>
+          FEMALE
+          <input
+            type="radio"
+            id="FEMALE"
+            name="gender"
+            checked={gender === "FEMALE"}
+            onChange={() => {
+              setGender("FEMALE");
+            }}
+          ></input>
+        </div>
       </div>
       <button onClick={register}>sign-up</button>
     </div>

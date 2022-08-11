@@ -6,23 +6,23 @@ import { useNavigate } from "react-router-dom";
 
 function SignInPage() {
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
   const navigate = useNavigate();
   const nameHandler = (e) => {
     setName(e.target.value);
   };
-  const ageHandler = (e) => {
-    setAge(e.target.value);
-  };
-  const register = () => {
+
+  const signIn = () => {
     const body = {
       name: name,
-      age: age,
     };
     axios
-      .post(API_SERVER + "/customers", body)
+      .post(API_SERVER + "/customers/login", body)
       .then((res) => {
-        alert("회원가입 완료");
+        console.log(res.data);
+        window.localStorage.setItem("isLogin", true);
+        window.localStroage.setItem("user-id", res.data.id);
+        window.localStorage.setItem("user-name", res.data.name);
+        alert("로그인 완료");
         navigate("/");
       })
       .catch((err) => {
@@ -31,16 +31,12 @@ function SignInPage() {
   };
 
   return (
-    <div className="register-page-container">
+    <div className="signin-page-container">
       <div className="username-container">
         <div>User Name</div>
         <input type="text" onChange={nameHandler}></input>
       </div>
-      <div className="age-container">
-        <div>Age</div>
-        <input type="text" onChange={ageHandler}></input>
-      </div>
-      <button onClick={register}>sign-up</button>
+      <button onClick={signIn}>sign-up</button>
     </div>
   );
 }
