@@ -1,4 +1,4 @@
-package com.makurly.backend;
+package com.makurly.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
