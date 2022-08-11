@@ -33,4 +33,8 @@ public class CustomerRequest {
     public int getAge() {
         return age;
     }
+
+    public Gender getGender() {
+        return gender;
+    }
 }
