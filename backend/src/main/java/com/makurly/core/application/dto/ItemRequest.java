@@ -6,7 +6,8 @@ public class ItemRequest {
 
     private String name;
 
-    protected ItemRequest() {}
+    protected ItemRequest() {
+    }
 
     private ItemRequest(String name) {
         this.name = name;

@@ -7,7 +7,8 @@ public class ItemResponse {
     private Long id;
     private String name;
 
-    protected ItemResponse() {}
+    protected ItemResponse() {
+    }
 
     private ItemResponse(Long id, String name) {
         this.id = id;

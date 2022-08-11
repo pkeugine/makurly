@@ -6,18 +6,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Item {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private int age;
 
-    protected Item() {
+    protected Customer() {
     }
 
-    public Item(String name) {
+    public Customer(String name, int age) {
         this.name = name;
+        this.age = age;
+    }
+
+    public void updateWith(Customer other) {
+        this.name = other.name;
+        this.age = other.age;
     }
 
     public Long getId() {
@@ -28,7 +35,7 @@ public class Item {
         return name;
     }
 
-    public void updateWith(Item other) {
-        this.name = other.name;
+    public int getAge() {
+        return age;
     }
 }
