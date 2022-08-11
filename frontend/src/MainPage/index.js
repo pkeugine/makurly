@@ -1,9 +1,15 @@
 import React from "react";
 import "./style.css";
 import axios from "axios";
+import { API_SERVER } from "../config";
 function MainPage() {
   const testApi = () => {
-    axios.get(process.env);
+    const body = {
+      name: "item1",
+    };
+    axios.post(API_SERVER + "/items", body).then((res) => {
+      console.log(res.data);
+    });
   };
   return (
     <div className="main-page-container">
