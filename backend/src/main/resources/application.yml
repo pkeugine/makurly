@@ -12,4 +12,4 @@ spring:
       ddl-auto: create
 
 cors:
-  allowed-origins: 127.0.0.1:3000, localhost:3000
+  allowed-origins: http://127.0.0.1:3000, http://localhost:3000
