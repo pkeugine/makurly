@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### production info ###
+src/main/resources/application-prod.yml
