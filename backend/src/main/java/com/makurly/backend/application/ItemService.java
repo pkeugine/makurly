@@ -4,6 +4,8 @@ import com.makurly.backend.application.dto.ItemRequest;
 import com.makurly.backend.application.dto.ItemResponse;
 import com.makurly.backend.domain.Item;
 import com.makurly.backend.domain.ItemRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,14 @@ public class ItemService {
     private Item findItem(Long id) {
         return itemRepository.findById(id)
             .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ItemResponse> findAll() {
+        List<Item> items = itemRepository.findAll();
+        return items.stream()
+            .map(ItemResponse::of)
+            .collect(Collectors.toList());
     }
 
     public ItemResponse updateById(Long id, ItemRequest itemRequest) {

@@ -4,6 +4,7 @@ import com.makurly.backend.application.ItemService;
 import com.makurly.backend.application.dto.ItemRequest;
 import com.makurly.backend.application.dto.ItemResponse;
 import java.net.URI;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,12 @@ public class ItemController {
         ItemResponse itemResponse = itemService.create(itemRequest);
         URI uri = URI.create(String.format("/items/%d", itemResponse.getId()));
         return ResponseEntity.created(uri).body(itemResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ItemResponse>> findAllItems() {
+        List<ItemResponse> itemResponses = itemService.findAll();
+        return ResponseEntity.ok(itemResponses);
     }
 
     @GetMapping("/{id}")
