@@ -15,21 +15,45 @@ function UserInfoPage() {
       setAge(res.data.age);
       setGender(res.data.gender);
     });
-  }, []);
+  });
 
   return (
-    <div className="userinfo-page-container">
-      <div className="username-container">
-        <div>User Name</div>
-        <input type="text" disabled defaultValue={name}></input>
-      </div>
-      <div className="age-container">
-        <div>Age</div>
-        <input type="text" disabled defaultValue={age}></input>
-      </div>
-      <div className="gender-container">
-        <div>Gender</div>
-        <input type="text" disabled defaultValue={gender}></input>
+    <div className="register-page-container">
+      <div className="form-container">
+        <div className="label-container">유저정보</div>
+        <div className="input-layer">
+          <div className="label-container">이름</div>
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder={name}
+              className="input-box"
+              disabled
+            ></input>
+          </div>
+        </div>
+        <div className="input-layer">
+          <div className="label-container">나이</div>
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder={age}
+              className="input-box"
+              disabled
+            ></input>
+          </div>
+        </div>
+        <div className="input-layer">
+          <div className="label-container">성별</div>
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder={gender}
+              className="input-box"
+              disabled
+            ></input>
+          </div>
+        </div>
       </div>
     </div>
   );

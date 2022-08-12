@@ -9,6 +9,7 @@ function Header(logoutFunc) {
     window.localStorage.setItem("isLogin", false);
     window.localStorage.removeItem("user-id");
     window.localStorage.removeItem("user-name");
+    navigate("/");
   };
   return (
     <div className="header">
@@ -16,7 +17,7 @@ function Header(logoutFunc) {
         {isLogin() ? (
           <>
             <a href="/user-info" className="direct">
-              회원가입
+              유저정보
             </a>
             <div className="bar"></div>
             <button
@@ -45,13 +46,15 @@ function Header(logoutFunc) {
       </div>
       <div className="title">
         {" "}
-        <img
-          src="./img/kurly.png"
-          width="100"
-          height="50"
-          className="logo"
-          alt="logo"
-        ></img>
+        <a href="/">
+          <img
+            src="./img/kurly.png"
+            width="100"
+            height="50"
+            className="logo"
+            alt="logo"
+          ></img>
+        </a>
       </div>
     </div>
   );

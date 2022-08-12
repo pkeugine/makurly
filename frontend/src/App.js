@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "./page/MainPage";
 import RegisterPage from "./page/RegisterPage";
 import SignInPage from "./page/SignInPage";
