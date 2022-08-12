@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+  font-weight: bold;
+}
+
+.button1 {
+  color: white;
+  background-color: rgb(95, 0, 128);
+  border: none;
+  width: 100%;
+}
 .App {
   margin: 0 auto;
 }

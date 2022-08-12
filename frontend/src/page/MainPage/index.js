@@ -15,29 +15,47 @@ function MainPage() {
   const directUserInfo = () => {
     navigate("/user-info");
   };
-  const logout = () => {
-    window.localStorage.setItem("isLogin", false);
-    window.localStorage.removeItem("user-id");
-    window.localStorage.removeItem("user-name");
-    navigate("/");
-  };
 
   return (
     <div className="main-page-container">
-      <div>컬리 해커톤 1등팀</div>
-      {isLogin() ? (
-        <>
-          {" "}
-          <button onClick={directUserInfo}>user-info</button>
-          <button onClick={logout}>logout</button>
-        </>
-      ) : (
-        <>
-          {" "}
-          <button onClick={directSignUp}>sign up</button>
-          <button onClick={directSignIn}>sign in</button>
-        </>
-      )}
+      <div className="recommend-container">
+        <div className="label-container">
+          <div>추천1</div>
+        </div>
+        <div className="images-container">
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+        </div>
+      </div>
+      <div className="recommend-container">
+        <div className="label-container">
+          <div>추천2</div>
+        </div>
+        <div className="images-container">
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+          <div className="image-container">
+            <img alt="default" className="img" src="./img/default.jpg"></img>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

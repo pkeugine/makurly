@@ -1,0 +1,43 @@
+.header {
+  position: relative;
+  width: 1050px;
+  height: 100px;
+  margin: 0px auto;
+}
+
+.header .top {
+  position: absolute;
+  right: 0px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  height: 36px;
+  z-index: 20;
+}
+
+.header .top .direct {
+  cursor: pointer;
+  color: rgb(95, 0, 128);
+  text-decoration: none;
+  align-items: center;
+}
+
+.header .top .bar {
+  width: 1px;
+  height: 13px;
+  margin: 0px 12px;
+
+  background-color: rgb(217, 217, 217);
+}
+.header .title {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  padding-top: 36px;
+}
+
+.header .title .logo {
+  align-items: center;
+  flex: 0 0 82px;
+  display: block;
+}

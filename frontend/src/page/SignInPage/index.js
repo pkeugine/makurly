@@ -33,11 +33,31 @@ function SignInPage() {
 
   return (
     <div className="signin-page-container">
-      <div className="username-container">
-        <div>User Name</div>
-        <input type="text" onChange={nameHandler}></input>
+      <div className="form-container">
+        <div className="label-container">로그인</div>
+        <div className="input-layer">
+          <input
+            type="text"
+            onChange={nameHandler}
+            className="input-box"
+            placeholder="이름을 입력해주세요"
+          ></input>
+        </div>
+        <div className="input-layer">
+          {" "}
+          <button
+            onClick={signIn}
+            style={{
+              fontSize: "20px",
+              height: "50px",
+              borderRadius: "10px",
+            }}
+            className="button1"
+          >
+            로그인
+          </button>
+        </div>
       </div>
-      <button onClick={signIn}>sign-in</button>
     </div>
   );
 }

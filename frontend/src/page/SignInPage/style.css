@@ -1,7 +1,32 @@
-.register-page-container {
+.signin-page-container {
+  min-width: 1050px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   flex-direction: column;
+}
+.signin-page-container .form-container {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+.signin-page-container .form-container .label-container {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.signin-page-container .form-container .input-layer {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+.signin-page-container .form-container .input-layer .input-box {
+  width: 100%;
+  height: 48px;
+  border-radius: 4px;
+  padding: 5px;
+  border: 1px solid rgb(221, 221, 221);
 }

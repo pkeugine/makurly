@@ -35,38 +35,86 @@ function RegisterPage() {
 
   return (
     <div className="register-page-container">
-      <div className="username-container">
-        <div>User Name</div>
-        <input type="text" onChange={nameHandler}></input>
-      </div>
-      <div className="age-container">
-        <div>Age</div>
-        <input type="text" onChange={ageHandler}></input>
+      <div className="form-container">
+        <div className="label-container">회원가입</div>
+        <div className="input-layer">
+          <div className="label-container">이름</div>
+          <div className="input-container">
+            <input
+              type="text"
+              onChange={nameHandler}
+              placeholder="이름을 입력해주세요"
+              className="input-box"
+            ></input>
+          </div>
+        </div>
+        <div className="input-layer">
+          <div className="label-container">나이</div>
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder="나이를 입력해주세요"
+              onChange={ageHandler}
+              className="input-box"
+            ></input>
+          </div>
+        </div>
+        <div className="input-layer">
+          <div className="label-container">성별</div>
+          <div className="input-container">
+            <div className="radio-input">
+              <div className="label">남자</div>
 
-        <div>
-          MALE
-          <input
-            type="radio"
-            id="MALE"
-            name="gender"
-            checked={gender === "MALE"}
-            onChange={() => {
-              setGender("MALE");
+              <input
+                type="radio"
+                id="MALE"
+                name="gender"
+                checked={gender === "MALE"}
+                onChange={() => {
+                  setGender("MALE");
+                }}
+              ></input>
+            </div>
+            <div className="radio-input">
+              <div className="label">여자</div>
+              <input
+                type="radio"
+                id="FEMALE"
+                name="gender"
+                checked={gender === "FEMALE"}
+                onChange={() => {
+                  setGender("FEMALE");
+                }}
+              ></input>
+            </div>
+            <div className="radio-input">
+              <div className="label">선택안함</div>
+              <input
+                type="radio"
+                id="NULL"
+                name="gender"
+                checked={gender === null}
+                onChange={() => {
+                  setGender(null);
+                }}
+              ></input>
+            </div>
+          </div>
+        </div>
+        <div className="input-layer">
+          <button
+            className="button1"
+            style={{
+              fontSize: "20px",
+              height: "50px",
+              borderRadius: "10px",
             }}
-          ></input>
-          FEMALE
-          <input
-            type="radio"
-            id="FEMALE"
-            name="gender"
-            checked={gender === "FEMALE"}
-            onChange={() => {
-              setGender("FEMALE");
-            }}
-          ></input>
+            onClick={register}
+          >
+            가입하기
+          </button>
         </div>
       </div>
-      <button onClick={register}>sign-up</button>
     </div>
   );
 }
