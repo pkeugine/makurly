@@ -31,8 +31,17 @@
   overflow: hidden;
   object-fit: cover;
 }
+
 .main-page-container .recommend-container .image-container .img {
   width: 250px;
   height: 320px;
   object-fit: cover;
+}
+.test {
+  width: 250px;
+  height: 320px;
+  background-color: black;
+}
+.test:active {
+  background-color: yellow;
 }
