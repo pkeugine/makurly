@@ -6,46 +6,23 @@
   flex-direction: column;
 }
 .register-page-container .form-container {
-  width: 640px;
+  margin-top: 50px;
+  width: 1050px;
   display: flex;
   flex-direction: column;
 }
-.register-page-container .form-container .label-container {
+.register-page-container .form-container .title-container {
   height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 30px;
+  border-bottom: solid 1px;
 }
-.register-page-container .form-container .input-layer {
-  width: 100%;
-  display: inline-flex;
+.register-page-container .form-container .content-container {
+  display: flex;
   align-items: center;
-  padding: 10px 20px;
-}
-.register-page-container .form-container .input-layer .label-container {
-  width: 140px;
-  align-items: center;
-  font-size: 15px;
-  justify-content: start;
-}
-.register-page-container .form-container .input-layer .input-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.register-page-container .form-container .input-layer .input-box {
-  width: 100%;
-  height: 48px;
-  border-radius: 4px;
-  padding: 5px;
-  border: 1px solid rgb(221, 221, 221);
-}
-.register-page-container .form-container .input-layer .radio-input {
-  display: flex;
-}
-.register-page-container .form-container .input-layer .radio-input .label {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 30px;
 }
