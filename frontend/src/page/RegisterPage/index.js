@@ -40,10 +40,155 @@ function RegisterPage() {
         <div className="content-container">
           <div className="input-layer">
             <div className="a">
-              <div className="content-name"></div>
-              <div className="content-input"></div>
+              <div className="content-name">
+                <div className="name">이름</div>
+              </div>
+              <div className="content-input">
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="이름을 입력해주세요"
+                ></input>
+              </div>
             </div>
             <div className="b"></div>
+          </div>
+          <div className="input-layer">
+            <div className="a">
+              <div className="content-name">
+                <div className="name">생년월일</div>
+              </div>
+              <div className="content-input">
+                <div className="input">
+                  <input className="input2" placeholder="YYYY"></input>
+
+                  <input className="input3" placeholder="MM"></input>
+
+                  <input className="input2" placeholder="DD"></input>
+                </div>
+              </div>
+            </div>
+            <div className="b"></div>
+          </div>
+          <div className="input-layer">
+            <div className="a">
+              <div className="content-name">
+                <div className="name">성별</div>
+              </div>
+              <div className="content-input">
+                <div
+                  className="input"
+                  style={{ border: "none", padding: "0px" }}
+                >
+                  <div className="radio-input">
+                    <input
+                      type="radio"
+                      id="MALE"
+                      name="gender"
+                      checked={gender === "MALE"}
+                      style={{ width: "1px", height: "1px" }}
+                    ></input>
+                    {gender === "MALE" ? (
+                      <span className="span-clicked">
+                        <div className="span-inner"></div>
+                      </span>
+                    ) : (
+                      <span
+                        className="span-unclicked"
+                        onClick={() => {
+                          setGender("MALE");
+                        }}
+                      >
+                        <div className="span-inner"></div>
+                      </span>
+                    )}
+
+                    <div className="label">남자</div>
+                  </div>
+                  <div className="radio-input">
+                    <input
+                      type="radio"
+                      id="FEMALE"
+                      name="gender"
+                      checked={gender === "FEMALE"}
+                      style={{ width: "1px", height: "1px" }}
+                    ></input>
+                    {gender === "FEMALE" ? (
+                      <span className="span-clicked">
+                        <div className="span-inner"></div>
+                      </span>
+                    ) : (
+                      <span
+                        className="span-unclicked"
+                        onClick={() => {
+                          setGender("FEMALE");
+                        }}
+                      >
+                        <div className="span-inner"></div>
+                      </span>
+                    )}
+                    <div className="label">여자</div>
+                  </div>
+                  <div className="radio-input">
+                    <input
+                      type="radio"
+                      id="NULL"
+                      name="gender"
+                      checked={gender === null}
+                      style={{ width: "1px", height: "1px" }}
+                    ></input>
+                    {gender === null ? (
+                      <span className="span-clicked">
+                        <div className="span-inner"></div>
+                      </span>
+                    ) : (
+                      <span
+                        className="span-unclicked"
+                        onClick={() => {
+                          setGender(null);
+                        }}
+                      >
+                        <div className="span-inner"></div>
+                      </span>
+                    )}
+                    <div className="label">상관 없음</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="b"></div>
+          </div>
+          <div className="input-layer">
+            <div className="a">
+              <div className="content-name2">
+                <div className="name">주소</div>
+              </div>
+              <div className="content-input2">
+                <div className="inner">
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="주소를 검색해주세요"
+                    disabled
+                  ></input>
+                </div>
+                <div className="inner">
+                  <input
+                    type="text"
+                    className="input"
+                    placeholder="상세주소를 입력하세요"
+                  ></input>
+                </div>
+              </div>
+            </div>
+            <div className="b">
+              <div className="button-container">
+                <div className="inner">
+                  <button className="button2 search">찾아보기</button>
+                </div>
+                <div className="inner"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
   font-size: 30px;
   border-bottom: solid 1px;
 }
@@ -24,5 +25,217 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  font-size: 30px;
+}
+.register-page-container .form-container .content-container .input-layer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgb(217, 217, 217);
+
+  width: 100%;
+}
+.register-page-container .form-container .content-container .input-layer .a {
+  display: flex;
+  width: 50%;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-name {
+  background-color: rgb(217, 217, 217, 0.3);
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 75px;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-name
+  .name {
+  margin-left: 30px;
+  color: rgb(150, 150, 150, 1);
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-input {
+  width: 325px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-input
+  .input {
+  width: 90%;
+  height: 40px;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 4px;
+  padding: 0px 11px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-input
+  .radio-input {
+  height: 40px;
+  color: rgb(150, 150, 150);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-input
+  .input
+  .bar {
+  width: 1px;
+  height: 20px;
+
+  background-color: rgb(217, 217, 217);
+}
+.register-page-container .form-container .content-container .input-layer .b {
+  width: 50%;
+  height: 100%;
+}
+
+.input2 {
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+}
+.input3 {
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  border-left: solid 1px rgb(217, 217, 217);
+  border-right: solid 1px rgb(217, 217, 217);
+}
+.span-clicked {
+  width: 24px;
+  height: 24px;
+  background-color: rgb(95, 0, 128);
+  border-radius: 50%;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px;
+}
+.span-unclicked {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  border: solid 1px;
+}
+.span-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: white;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-name2 {
+  background-color: rgb(217, 217, 217, 0.3);
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 130px;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-name2
+  .name {
+  margin-left: 30px;
+  color: rgb(150, 150, 150, 1);
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-input2 {
+  width: 325px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-input2
+  .input {
+  width: 90%;
+  height: 40px;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 4px;
+  padding: 0px 11px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.register-page-container
+  .form-container
+  .content-container
+  .input-layer
+  .a
+  .content-input2
+  .inner {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.b .button-container {
+  height: 130px;
+}
+.b .button-container .inner {
+  height: 50%;
+  padding-left: 10px;
+  align-items: center;
+  display: flex;
+}
+.search {
+  width: 100px;
+  height: 40px;
 }

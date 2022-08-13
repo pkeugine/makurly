@@ -9,6 +9,13 @@
   border: none;
   width: 100%;
 }
+.button2 {
+  color: rgb(95, 0, 128);
+  background-color: white;
+  border: 1px solid rgb(95, 0, 128);
+  border-radius: 5px;
+  width: 100%;
+}
 .App {
   margin: 0 auto;
 }
