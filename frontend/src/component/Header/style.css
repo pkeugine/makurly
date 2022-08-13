@@ -47,6 +47,9 @@
 }
 .header .mid .title .title-korean {
   margin-left: 20px;
+  font-weight: 600;
+  color: rgb(95, 0, 128);
+  font-size: 20px;
 }
 .header .mid .search-engine {
   display: flex;
@@ -83,6 +86,7 @@
   align-items: center;
 }
 .header .navbar {
+  font-weight: 600;
   display: flex;
   justify-content: space-between;
   width: 1050px;

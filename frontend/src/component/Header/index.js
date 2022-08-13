@@ -89,8 +89,8 @@ function Header(logoutFunc) {
       </div>
       <div className="navbar">
         <div className="category">
-          <AiOutlineMenu size="20"></AiOutlineMenu>
-          <div>카테고리</div>
+          <AiOutlineMenu size="20" color="rgb(95, 0, 128)"></AiOutlineMenu>
+          <div className="text">카테고리</div>
         </div>
         <div className="menu">
           <div className="menu-item">신상품</div>

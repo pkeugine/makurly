@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
-  font-weight: bold;
+  font-family: "Spoqa Han Sans";
 }
 
 .button1 {
@@ -47,4 +46,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+@font-face {
+  font-family: "Spoqa Han Sans";
+  src: url("./asset/Spoqa Han Sans Regular.ttf");
 }
