@@ -50,7 +50,7 @@ resource "aws_security_group" "dev_security_group" {
   egress = [
     {
       cidr_blocks      = ["0.0.0.0/0", ]
-      description      = ""
+      description      = "to all"
       from_port        = 0
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
@@ -64,7 +64,7 @@ resource "aws_security_group" "dev_security_group" {
   ingress = [
     {
       cidr_blocks      = ["0.0.0.0/0", ]
-      description      = ""
+      description      = "ssh"
       from_port        = 22
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
@@ -80,7 +80,7 @@ resource "aws_security_group" "dev_app_security_group" {
   ingress = [
     {
       cidr_blocks      = ["0.0.0.0/0", ]
-      description      = ""
+      description      = "Spring default port"
       from_port        = 8080
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
@@ -96,7 +96,7 @@ resource "aws_security_group" "dev_nginx_security_group" {
   ingress = [
     {
       cidr_blocks      = ["0.0.0.0/0", ]
-      description      = ""
+      description      = "http"
       from_port        = 80
       ipv6_cidr_blocks = []
       prefix_list_ids  = []
@@ -104,6 +104,17 @@ resource "aws_security_group" "dev_nginx_security_group" {
       security_groups  = []
       self             = false
       to_port          = 80
+    },
+    {
+      cidr_blocks      = ["0.0.0.0/0", ]
+      description      = "https"
+      from_port        = 443
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      protocol         = "tcp"
+      security_groups  = []
+      self             = false
+      to_port          = 443
     }
   ]
 }
