@@ -1,0 +1,230 @@
+.cart-page-container {
+  min-width: 1050px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.cart-page-container .form-container {
+  margin-top: 50px;
+  width: 1050px;
+  display: flex;
+  flex-direction: column;
+}
+.cart-page-container .form-container .title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+  font-weight: 600;
+  font-size: 30px;
+}
+.cart-page-container .form-container .cart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 100px;
+  height: 100%;
+}
+.cart-page-container .form-container .cart-container .a {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid black;
+}
+.cart-page-container .form-container .cart-container .a .item-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .check-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 10%;
+  height: 100%;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 100%;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .image-container
+  .img {
+  width: 90px;
+  height: 90px;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .image-container
+  .img
+  .image {
+  width: 90px;
+  height: 90px;
+  overflow: hidden;
+  object-fit: cover;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .name-container {
+  display: flex;
+  padding-left: 10px;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .count-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .count-container
+  .count-box {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 3px;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .count-container
+  .count-box
+  .count-button {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .count-container
+  .count-box
+  .count {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  border: none;
+  font-size: 10px;
+  background-color: white;
+  width: 40px;
+  height: 30px;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .a
+  .item-container
+  .price-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+}
+.cart-page-container .form-container .cart-container .b {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 5px;
+}
+.cart-page-container .form-container .cart-container .b .destination-label {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.cart-page-container
+  .form-container
+  .cart-container
+  .b
+  .destination-label
+  .destination-title {
+  width: 100%;
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cart-page-container
+  .form-container
+  .cart-container
+  .b
+  .destination-description {
+  font-size: 15px;
+}
+
+.cart-page-container .form-container .cart-container .b .destination-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 40px;
+}
+.cart-page-container .form-container .cart-container .b .order-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 40px;
+}
+.cart-page-container .form-container .cart-container .b .price {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
