@@ -6,7 +6,7 @@
 }
 
 .main-page-container .recommend-container {
-  padding: 40px 0px;
+  padding: 50px 0px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -15,27 +15,72 @@
 
 .main-page-container .recommend-container .label-container {
   font-size: 30px;
-  padding-bottom: 30px;
-}
-.main-page-container .recommend-container .images-container {
-  display: flex;
-  justify-content: space-between;
-  width: 1050px;
+  padding-bottom: 50px;
 }
 
+.main-page-container .recommend-container .items-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 1050px;
+}
+.main-page-container .recommend-container .item-container {
+  display: flex;
+  flex-direction: column;
+}
 .main-page-container .recommend-container .image-container {
   flex-direction: row;
-  width: 250px;
+  width: 320px;
   height: 320px;
+  position: relative;
 
   overflow: hidden;
   object-fit: cover;
 }
-
+.main-page-container .recommend-container .image-container .icon {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(95, 0, 128);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 260px;
+  padding-right: 2px;
+  bottom: 20px;
+}
 .main-page-container .recommend-container .image-container .img {
-  width: 250px;
+  width: 320px;
   height: 320px;
+
   object-fit: cover;
+}
+.main-page-container .recommend-container .item-container .info-container {
+  width: 320px;
+  min-height: 180px;
+}
+.main-page-container
+  .recommend-container
+  .item-container
+  .info-container
+  .title-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.main-page-container
+  .recommend-container
+  .item-container
+  .info-container
+  .price-container {
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  height: 30px;
 }
 .test {
   width: 250px;
@@ -44,4 +89,50 @@
 }
 .test:active {
   background-color: yellow;
+}
+
+.modal .cart-modal {
+  width: 500px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background-color: white;
+}
+.modal .cart-modal .top {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.modal .cart-modal .top .a {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70px;
+  width: 70%;
+}
+.modal .cart-modal .top .a .title-label {
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 5px 0px;
+}
+.modal .cart-modal .top .a .price-label {
+  font-weight: bold;
+  margin: 5px 0px;
+}
+.modal .cart-modal .top .b {
+  height: 70px;
+  width: 30%;
+}
+.modal .cart-modal .mid {
+  height: 70px;
+  width: 100%;
+}
+.modal .cart-modal .bottom {
+  height: 100px;
+  width: 100%;
 }

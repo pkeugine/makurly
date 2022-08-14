@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./style.css";
 import axios from "axios";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 import { API_SERVER } from "../../config";
 import { useNavigate } from "react-router-dom";
 
@@ -191,6 +192,48 @@ function RegisterPage() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="agreement-container">
+        <div className="a">
+          <div className="label">이용약관동의</div>
+        </div>
+        <div className="b">
+          <div className="main-agree">
+            <AiOutlineCheckCircle
+              size="30"
+              color="rgb(217,217,217)"
+              style={{ marginLeft: "5px", marginRight: "5px" }}
+            ></AiOutlineCheckCircle>
+            전체 동의합니다
+          </div>
+          <div className="sub-agree">
+            <AiOutlineCheckCircle
+              size="30"
+              color="rgb(217,217,217)"
+              style={{ marginLeft: "5px", marginRight: "5px" }}
+            ></AiOutlineCheckCircle>
+            이용약관 동의(필수)
+          </div>
+          <div className="sub-agree">
+            <AiOutlineCheckCircle
+              size="30"
+              color="rgb(217,217,217)"
+              style={{ marginLeft: "5px", marginRight: "5px" }}
+            ></AiOutlineCheckCircle>
+            개인정보 수집 이용 동의(필수)
+          </div>
+          <div className="sub-agree">
+            <AiOutlineCheckCircle
+              size="30"
+              color="rgb(217,217,217)"
+              style={{ marginLeft: "5px", marginRight: "5px" }}
+            ></AiOutlineCheckCircle>
+            개인정보 수집 이용 동의(필수)
+          </div>
+        </div>
+      </div>
+      <div className="register-button-container">
+        <button className="button1 register-button">가입하기</button>
       </div>
     </div>
   );

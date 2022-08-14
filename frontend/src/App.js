@@ -5,7 +5,7 @@ import RegisterPage from "./page/RegisterPage";
 import SignInPage from "./page/SignInPage";
 import UserInfoPage from "./page/UserInfoPage";
 import Header from "./component/Header";
-
+import Footer from "./component/Footer";
 function App() {
   return (
     <div className="App">
@@ -16,6 +16,7 @@ function App() {
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/user-info" element={<UserInfoPage />} />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

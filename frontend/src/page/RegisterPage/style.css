@@ -239,3 +239,54 @@
   width: 100px;
   height: 40px;
 }
+
+.agreement-container {
+  width: 1050px;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  border-top: solid 1px;
+  display: flex;
+}
+.agreement-container .a {
+  width: 200px;
+  height: 210px;
+  background-color: rgb(217, 217, 217, 0.3);
+}
+.agreement-container .a .label {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  color: rgb(150, 150, 150, 1);
+  margin-left: 30px;
+}
+.agreement-container .b {
+  width: 100%;
+}
+.agreement-container .b .main-agree {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 18px;
+  width: 100%;
+  height: 60px;
+}
+.agreement-container .b .sub-agree {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid rgb(217, 217, 217);
+}
+.register-button-container {
+  display: flex;
+  margin-bottom: 50px;
+}
+.register-button {
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+}
