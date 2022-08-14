@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import "./style.css";
 
-const Modal = () => {
+const Modal = ({ closeFunc }) => {
   return (
     <div className="modal-background">
       <div className="modal">
@@ -13,13 +13,17 @@ const Modal = () => {
               <div className="price-label">10000원</div>
             </div>
             <div className="b">
-              <div className="count-container"></div>
+              <div className="count-container">
+                <button className="count-button">-</button>
+                <div className="count">1</div>
+                <button className="count-button">+</button>
+              </div>
             </div>
           </div>
           <div className="mid">
             <div className="price-container">
-              <div className="total"></div>
-              <div className="total-price"></div>
+              <div className="total">합계</div>
+              <div className="total-price">10000원</div>
             </div>
           </div>
           <div className="bottom">
@@ -29,6 +33,9 @@ const Modal = () => {
                 style={{
                   width: "200px",
                   height: "50px",
+                }}
+                onClick={() => {
+                  closeFunc();
                 }}
               >
                 취소
@@ -92,7 +99,15 @@ function MainPage() {
           ))}
         </div>
       </div>
-      {modalVisible ? <Modal></Modal> : <></>}
+      {modalVisible ? (
+        <Modal
+          closeFunc={() => {
+            setModalVisible(false);
+          }}
+        ></Modal>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

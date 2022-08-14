@@ -17,6 +17,9 @@
   border-radius: 5px;
   width: 100%;
 }
+button {
+  cursor: pointer;
+}
 .modal {
   position: fixed;
   top: 50%;
