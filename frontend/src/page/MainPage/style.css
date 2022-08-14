@@ -132,7 +132,21 @@
   height: 70px;
   width: 100%;
 }
-.modal .cart-modal .bottom {
-  height: 100px;
+.modal .cart-modal .mid .price-container {
   width: 100%;
+  height: 100%;
+}
+.modal .cart-modal .bottom {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 50px;
+  width: 100%;
+}
+.modal .cart-modal .bottom .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row;
 }

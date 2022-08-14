@@ -17,11 +17,31 @@ const Modal = () => {
             </div>
           </div>
           <div className="mid">
-            <div className="price-container"></div>
+            <div className="price-container">
+              <div className="total"></div>
+              <div className="total-price"></div>
+            </div>
           </div>
           <div className="bottom">
             <div className="button-container">
-              <button className="button2"></button>
+              <button
+                className="button2"
+                style={{
+                  width: "200px",
+                  height: "50px",
+                }}
+              >
+                취소
+              </button>
+              <button
+                className="button1"
+                style={{
+                  width: "200px",
+                  height: "50px",
+                }}
+              >
+                장바구니 담기
+              </button>
             </div>
           </div>
         </div>
@@ -72,7 +92,7 @@ function MainPage() {
           ))}
         </div>
       </div>
-      {/* {modalVisible ? <Modal></Modal> : <></>} */}
+      {modalVisible ? <Modal></Modal> : <></>}
     </div>
   );
 }

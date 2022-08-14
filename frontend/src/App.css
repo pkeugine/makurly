@@ -6,6 +6,7 @@
 .button1 {
   color: white;
   background-color: rgb(95, 0, 128);
+  border-radius: 5px;
   border: none;
   width: 100%;
 }
