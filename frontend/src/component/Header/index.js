@@ -87,7 +87,13 @@ function Header(logoutFunc) {
               {" "}
               <GrLocation size="20"></GrLocation>
               <AiOutlineHeart size="20"></AiOutlineHeart>
-              <AiOutlineShoppingCart size="20"></AiOutlineShoppingCart>
+              <AiOutlineShoppingCart
+                className="button"
+                onClick={() => {
+                  navigate("/cart");
+                }}
+                size="20"
+              ></AiOutlineShoppingCart>
             </div>
           </div>
         </div>
