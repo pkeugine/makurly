@@ -1,0 +1,1 @@
+terraform output > ip.txt
