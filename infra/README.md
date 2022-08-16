@@ -18,14 +18,18 @@
 - [x] "username_accessKeys.csv"
 
 - [x] frontend domain name (makurkly.kro.kr)
+    - [x] SSL certificates for domain name(ex : certificate.crt, private.key)
 - [x] backend domain name (makurly-api.kro.kr)
 
 ### setup.sh : initial setup before doing anything
 - [ ] install aws cli
 - [ ] install terraform
 
-- [x] pwd and save the directory path
+- [x] pwd and save the directory path > information.txt
+- [ ] interactive ui for service domain name > information.txt
+- [ ] interactive ui for api domain name > information.txt
 - [ ] (modify.sh) modify ALL scripts to use the directory path from above process
+- [ ] (connect-ip.sh) modify domain names in production related files
 - [ ] (not fully solved) aws-setup (child process 에서 진행되기 때문에 environment variable setting 이 안된다)
 
 ### initiate.sh : initiate infrastructure process
@@ -42,3 +46,12 @@
 리소스를 삭제하는 과정. Cloud 서비스를 사용하지 않아 비용을 내기 싫거나 프로젝트를 그만 할 때 사용.
 - [x] terraform destory
 - [x] delete pem key
+
+### what this does
+- [x] automatic (default) CORS setup
+- [x] HSTS
+- [x] create pem key to access instances
+- [x] default network security setting (open 22 port for SSH, 8080 port for Spring application, 80 & 433
+    - [x] port 22 for SSH (all instances)
+    - [x] port 8080 for Spring application, only for web application server instance
+    - [x] port 80 & 443 for Nginx instance
