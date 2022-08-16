@@ -4,4 +4,3 @@ terraform.*
 pkeugine_accessKeys.csv
 production
 ssl
-ip.txt

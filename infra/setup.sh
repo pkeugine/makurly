@@ -1,17 +1,16 @@
 # pwd and save path
-echo "absolute_path=$(pwd)" > information.txt
+export PK_INFRA_PATH=$(pwd)
+echo "set $PK_INFRA_PATH as absolute path"
+echo "PK_INFRA_PATH=$PK_INFRA_PATH" > information.txt
 
-# domain name setup
-echo -n "insert service domain name: "
-read -r service_domain_name
-echo "service_domain_name=${service_domain_name}" >> information.txt
+cd ../backend
+export PK_BACKEND_PATH=$(pwd)
+echo "set $PK_BACKEND_PATH as backend path"
+echo "PK_BACKEND_PATH=$PK_BACKEND_PATH" >> $PK_INFRA_PATH/information.txt
 
-echo -n "insert api domain name: "
-read -r api_domain_name
-echo "api_domain_name=${api_domain_name}" >> information.txt
+cd ../frontend
+export PK_FRONTEND_PATH=$(pwd)
+echo "set $PK_FRONTEND_PATH as frontend path"
+echo "PK_FRONTEND_PATH=$PK_FRONTEND_PATH" >> $PK_INFRA_PATH/information.txt
 
-# aws setup
-export AWS_ACCESS_KEY_ID=$(sed -n 2p pkeugine_accessKeys.csv | cut -d, -f1)
-export AWS_SECRET_ACCESS_KEY=$(sed -n 2p pkeugine_accessKeys.csv | rev | cut -d, -f1 | rev)
-echo AWS_ACCESS_KEY_ID : $AWS_ACCESS_KEY_ID
-echo AWS_SECRET_ACCESS_KEY : $AWS_SECRET_ACCESS_KEY
+cd $PK_INFRA_PATH
