@@ -25,9 +25,9 @@
 - [ ] install aws cli
 - [ ] install terraform
 
-- [x] pwd and save the directory path > information.txt
-- [ ] interactive ui for service domain name > information.txt
-- [ ] interactive ui for api domain name > information.txt
+- [x] pwd and save the directory path >> information.txt
+- [x] interactive ui for service domain name > information.txt
+- [x] interactive ui for api domain name > information.txt
 - [ ] (modify.sh) modify ALL scripts to use the directory path from above process
 - [ ] (connect-ip.sh) modify domain names in production related files
 - [ ] (not fully solved) aws-setup (child process 에서 진행되기 때문에 environment variable setting 이 안된다)
