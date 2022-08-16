@@ -34,3 +34,6 @@ echo "alias gonginx with ssh to nginx server"
 alias gonginx='ssh -i $PK_INFRA_PATH/pk-key.pem ubuntu@$PK_SERVICE_PUBLIC_IP'
 echo "alias gonginx with ssh to spring server"
 alias gospring='ssh -i $PK_INFRA_PATH/pk-key.pem ubuntu@$PK_API_PUBLIC_IP'
+
+# create production related files
+source $PK_INFRA_PATH/scripts/connect-ip.sh
