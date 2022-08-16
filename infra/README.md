@@ -1,6 +1,6 @@
 # TODO
 
-- [ ] 백엔드(api) 서버 도메인 확보
+- [x] 백엔드(api) 서버 도메인 확보
 - [ ] apt update 즉시 실행
 - [ ] 필요한 패키지 다운로드 즉시 실행
 - [ ] mkdir 즉시 실행
@@ -8,11 +8,37 @@
 
 - [ ] database 생성
 - [ ] brain 서버 생성
+    - [x] initiate flask project
+    - [ ] use models and run the server
+    - [ ] flask server should install python3 and start venv
 
-### initiate process
-모든 리소스를 처음 만들고 환경 설정을 해주는 과정
+### 준비물
+- [x] install aws cli
+- [x] install terraform
+- [x] "username_accessKeys.csv"
+
+- [x] frontend domain name (makurkly.kro.kr)
+- [x] backend domain name (makurly-api.kro.kr)
+
+### setup.sh : initial setup before doing anything
+- [ ] install aws cli
+- [ ] install terraform
+
+- [x] pwd and save the directory path
+- [ ] (modify.sh) modify ALL scripts to use the directory path from above process
+- [ ] (not fully solved) aws-setup (child process 에서 진행되기 때문에 environment variable setting 이 안된다)
+
+### initiate.sh : initiate infrastructure process
+모든 리소스를 처음 만들고 환경 설정을 해주는 과정.
+- [x] terraform apply -auto-approve
+- [x] create production/ip.txt containing created public ips
 
 ### update process
-이미 배포가 된 과정에서 일부분만 수정해야 할 때
+이미 배포가 된 과정에서 일부분만 수정해야 할 때.
 #### backend 배포
 #### frontend 배포
+
+### destory.sh : destroy process
+리소스를 삭제하는 과정. Cloud 서비스를 사용하지 않아 비용을 내기 싫거나 프로젝트를 그만 할 때 사용.
+- [x] terraform destory
+- [x] delete pem key

@@ -1,0 +1,1 @@
+absolute_path=/Users/pkeugine/Projects/kurly/infra
