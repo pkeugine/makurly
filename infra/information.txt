@@ -1,5 +1,7 @@
 PK_INFRA_PATH=/Users/pkeugine/Projects/kurly/infra
 PK_BACKEND_PATH=/Users/pkeugine/Projects/kurly/backend
 PK_FRONTEND_PATH=/Users/pkeugine/Projects/kurly/frontend
-pk_service_domain_name=makurly.kro.kr
-pk_api_domain_name=makurly-api.kro.kr
+PK_SERVICE_DOMAIN_NAME=makurly.kro.kr
+PK_API_DOMAIN_NAME=makurly-api.kro.kr
+PK_SERVICE_PUBLIC_IP=13.125.213.125
+PK_API_PUBLIC_IP=3.34.181.64

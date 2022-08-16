@@ -1,5 +1,7 @@
 # TODO
 
+- [ ] alias and environment variables only last for current session!!!!!!!!!!!!!!!!
+
 - [x] 백엔드(api) 서버 도메인 확보
 - [ ] apt update 즉시 실행
 - [ ] 필요한 패키지 다운로드 즉시 실행
@@ -45,7 +47,11 @@
 
 - [x] terraform apply -auto-approve
 - [x] add created public ips to information.txt
-    - [ ] export it
+    - [x] export it (HARD CODED!!!!!! might crash if terraform code structure changes)
+
+- [x] alias ssh commands
+    - [x] nginx
+    - [x] spring
 
 ### update process
 이미 배포가 된 과정에서 일부분만 수정해야 할 때.
@@ -65,8 +71,9 @@
 - [ ] install minimum required packages in instances
 - [x] automatic (default) CORS setup
 - [x] HSTS
-- [x] create pem key to access instances
-- [x] default network security setting (open 22 port for SSH, 8080 port for Spring application, 80 & 433
+- [ ] alias ssh commands so user doesn't have to keep track of public ip
+- [x] create pem key to access instances, delete pem key when destroying resources
+- [x] default network security setting
     - [x] port 22 for SSH (all instances)
     - [x] port 8080 for Spring application, only for web application server instance
     - [x] port 80 & 443 for Nginx instance
