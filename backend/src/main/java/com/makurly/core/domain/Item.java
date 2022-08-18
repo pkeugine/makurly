@@ -1,5 +1,6 @@
 package com.makurly.core.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,13 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(name="img_url")
     private String imageUrl;
+
+    private String category;
+
+    private Integer price;
+
 
     protected Item() {
     }
@@ -38,4 +45,14 @@ public class Item {
     public String getImageUrl() {
         return imageUrl;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+
 }

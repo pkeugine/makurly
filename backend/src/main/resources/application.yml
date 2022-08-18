@@ -4,9 +4,14 @@ spring:
     url: jdbc:h2:mem:testdb
     username: sa
     password:
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://13.125.234.219:3306/makurly?userSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+#    username: makurly
+#    password: makurlypassword
   h2:
     console:
       enabled: true
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
