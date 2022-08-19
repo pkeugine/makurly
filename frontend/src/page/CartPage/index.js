@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { GrLocation } from "react-icons/gr";
 import "./style.css";
