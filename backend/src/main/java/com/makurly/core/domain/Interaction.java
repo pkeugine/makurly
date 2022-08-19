@@ -47,4 +47,15 @@ public class Interaction {
     public List<Recommend> getRecommends() {
         return recommends;
     }
+
+    public Interaction() {
+    }
+
+    public Interaction(Customer customer, LocalDateTime orderDate, List<Recommend> recommends,
+                       List<InteractionItem> interactionItems) {
+        this.customer = customer;
+        this.orderDate = orderDate;
+        this.recommends = recommends;
+        this.interactionItems = interactionItems;
+    }
 }
