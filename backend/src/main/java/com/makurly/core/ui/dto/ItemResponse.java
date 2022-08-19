@@ -7,21 +7,16 @@ public class ItemResponse {
     private Long id;
     private String name;
     private String imageUrl;
+    private String category;
 
     protected ItemResponse() {
     }
 
-    private ItemResponse(Long id, String name, String imageUrl) {
+    public ItemResponse(Long id, String name, String imageUrl, String category) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
-    }
-
-    public static ItemResponse of(Item item) {
-        return new ItemResponse(
-            item.getId(),
-            item.getName(),
-            item.getImageUrl());
+        this.category = category;
     }
 
     public Long getId() {
@@ -34,5 +29,17 @@ public class ItemResponse {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public static ItemResponse of(Item item){
+        return new ItemResponse(
+                item.getId(),
+                item.getName(),
+                item.getImageUrl(),
+                item.getCategory());
     }
 }
