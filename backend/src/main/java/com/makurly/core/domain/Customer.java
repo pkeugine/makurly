@@ -27,11 +27,6 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "customer", orphanRemoval = true)
-    private List<Cart> carts = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "customer", orphanRemoval = true)
-    private List<Interaction> interactions = new ArrayList<>();
     private LocalDate birthDate;
 
     private String device;
@@ -42,20 +37,25 @@ public class Customer {
 
     private LocalDateTime signInDate;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "customer", orphanRemoval = true)
+    private List<Cart> carts = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "customer", orphanRemoval = true)
+    private List<Interaction> interactions = new ArrayList<>();
+
 
     protected Customer() {
     }
 
-    public Customer(String name, int age, Gender gender) {
+    public Customer(String name, Gender gender, LocalDate birthDate, String device, String mainAddress,
+                    String detailedAddress, LocalDateTime signInDate) {
         this.name = name;
-        this.age = age;
         this.gender = gender;
-    }
-
-    public void updateWith(Customer other) {
-        this.name = other.name;
-        this.age = other.age;
-        this.gender = other.gender;
+        this.birthDate = birthDate;
+        this.device = device;
+        this.mainAddress = mainAddress;
+        this.detailedAddress = detailedAddress;
+        this.signInDate = signInDate;
     }
 
     public Long getId() {

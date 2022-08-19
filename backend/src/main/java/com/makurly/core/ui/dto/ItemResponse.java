@@ -1,4 +1,4 @@
-package com.makurly.core.application.dto;
+package com.makurly.core.ui.dto;
 
 import com.makurly.core.domain.Item;
 

@@ -1,10 +1,12 @@
 package com.makurly.core.ui;
 
 import com.makurly.core.application.CustomerService;
-import com.makurly.core.application.dto.CustomerRequest;
-import com.makurly.core.application.dto.CustomerResponse;
+import com.makurly.core.ui.dto.CustomerRequest;
+import com.makurly.core.ui.dto.CustomerResponse;
 import java.net.URI;
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,39 +28,10 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity<CustomerResponse> createUser(@RequestBody CustomerRequest customerRequest) {
-        CustomerResponse customerResponse = customerService.create(customerRequest);
-        URI uri = URI.create(String.format("/customers/%d", customerResponse.getId()));
-        return ResponseEntity.created(uri).body(customerResponse);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<CustomerResponse> findUserById(@PathVariable Long id) {
-        CustomerResponse customerResponse = customerService.findById(id);
-        return ResponseEntity.ok(customerResponse);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<CustomerResponse> login(@RequestBody CustomerRequest customerRequest) {
-        CustomerResponse customerResponse = customerService.findByName(customerRequest);
-        return ResponseEntity.ok(customerResponse);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<CustomerResponse>> findAllUsers() {
-        List<CustomerResponse> customerResponses = customerService.findAll();
-        return ResponseEntity.ok(customerResponses);
-    }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<CustomerResponse> updateUser(@PathVariable Long id, @RequestBody CustomerRequest customerRequest) {
-        CustomerResponse customerResponse = customerService.updateById(id, customerRequest);
-        return ResponseEntity.ok(customerResponse);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        customerService.deleteById(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerRequest customerRequest){
+        CustomerResponse responseBody = customerService.createCustomer(customerRequest);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(responseBody);
     }
 }

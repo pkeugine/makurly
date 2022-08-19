@@ -15,6 +15,8 @@ public class InteractionItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer quantity;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "interaction_id")
     private Interaction interaction;
@@ -23,6 +25,6 @@ public class InteractionItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    private Integer quantity;
+
 
 }
