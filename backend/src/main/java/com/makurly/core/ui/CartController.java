@@ -39,10 +39,17 @@ public class CartController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CartResponse> findCartById(@PathVariable Long id){
-        CartResponse responseBody = cartService.findCartById(id);
+    public ResponseEntity<CartResponse> findCartById(@PathVariable(name="id") Long cartId){
+        CartResponse responseBody = cartService.findCartById(cartId);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
+
+    @GetMapping()
+    public ResponseEntity<List<CartResponse>> findCartsByCustomerId(@RequestParam(name="id")Long customerId){
+        List<CartResponse> responseBody = cartService.findCartsByCustomerId(customerId);
+        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+    }
+
 
 
 }
