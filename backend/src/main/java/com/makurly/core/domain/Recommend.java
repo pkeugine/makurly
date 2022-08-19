@@ -47,4 +47,7 @@ public class Recommend {
     public Integer getDiscountRate() {
         return discountRate;
     }
+
+    public Recommend() {
+    }
 }

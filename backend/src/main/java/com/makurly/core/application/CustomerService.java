@@ -1,11 +1,9 @@
 package com.makurly.core.application;
 
-import com.makurly.core.application.dto.CustomerRequest;
-import com.makurly.core.application.dto.CustomerResponse;
 import com.makurly.core.domain.Customer;
 import com.makurly.core.domain.CustomerRepository;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.makurly.core.ui.dto.CustomerRequest;
+import com.makurly.core.ui.dto.CustomerResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,45 +17,9 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public CustomerResponse create(CustomerRequest customerRequest) {
-        Customer customer = customerRequest.toEntity();
-        customerRepository.save(customer);
-        return CustomerResponse.of(customer);
-    }
-
-    @Transactional(readOnly = true)
-    public CustomerResponse findById(Long id) {
-        return CustomerResponse.of(findCustomerById(id));
-    }
-
-    public CustomerResponse findByName(CustomerRequest customerRequest) {
-        String name = customerRequest.getName();
-        Customer customer = customerRepository.findByName(name)
-            .orElseThrow(IllegalArgumentException::new);
-        return CustomerResponse.of(customer);
-    }
-
-    private Customer findCustomerById(Long id) {
-        return customerRepository.findById(id)
-            .orElseThrow(IllegalArgumentException::new);
-    }
-
-    @Transactional(readOnly = true)
-    public List<CustomerResponse> findAll() {
-        List<Customer> customers = customerRepository.findAll();
-        return customers.stream()
-            .map(CustomerResponse::of)
-            .collect(Collectors.toList());
-    }
-
-    public CustomerResponse updateById(Long id, CustomerRequest customerRequest) {
-        Customer existingCustomer = findCustomerById(id);
-        Customer updatedCustomer = customerRequest.toEntity();
-        existingCustomer.updateWith(updatedCustomer);
-        return CustomerResponse.of(existingCustomer);
-    }
-
-    public void deleteById(Long id) {
-        customerRepository.deleteById(id);
+    public CustomerResponse createCustomer(CustomerRequest customerRequest){
+        Customer newCustomer=customerRequest.toEntity();
+        customerRepository.save(newCustomer);
+        return CustomerResponse.of(newCustomer);
     }
 }
