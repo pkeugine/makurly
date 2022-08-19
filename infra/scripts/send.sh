@@ -1,13 +1,13 @@
-cd ~/Projects/kurly/backend
+cd $PK_BACKEND_PATH
 ./gradlew clean build
-scp -i ~/Projects/kurly/infra/pk-key.pem ~/Projects/kurly/backend/build/libs/backend-0.0.1-SNAPSHOT.jar ubuntu@13.209.48.102:~/build
-scp -i ~/Projects/kurly/infra/pk-key.pem ~/Projects/kurly/infra/scripts/spring.sh ubuntu@13.209.48.102:~/scripts
-scp -i ~/Projects/kurly/infra/pk-key.pem ~/Projects/kurly/infra/scripts/spring-setup.sh ubuntu@13.209.48.102:~/scripts
+scp -i $PK_INFRA_PATH/pk-key.pem $PK_BACKEND_PATH/build/libs/backend-0.0.1-SNAPSHOT.jar ubuntu@$PK_API_IP:~/build
+scp -i $PK_INFRA_PATH/pk-key.pem $PK_INFRA_PATH/scripts/spring.sh ubuntu@$PK_API_IP:~/scripts
+scp -i $PK_INFRA_PATH/pk-key.pem $PK_INFRA_PATH/scripts/spring-setup.sh ubuntu@$PK_API_IP:~/scripts
 
 
-cd ~/Projects/kurly/frontend
+cd $PK_FRONTEND_PATH
 yarn build
-scp -i ~/Projects/kurly/infra/pk-key.pem -r ~/Projects/kurly/frontend/build ubuntu@13.124.232.162:~
-scp -i ~/Projects/kurly/infra/pk-key.pem -r ~/Projects/kurly/infra/scripts/nginx.sh ubuntu@13.124.232.162:~/scripts
-scp -i ~/Projects/kurly/infra/pk-key.pem -r ~/Projects/kurly/infra/scripts/nginx-setup.sh ubuntu@13.124.232.162:~/scripts
-scp -i ~/Projects/kurly/infra/pk-key.pem ~/Projects/kurly/infra/nginx/myapp.conf ubuntu@13.124.232.162:~/nginx
+scp -i $PK_INFRA_PATH/pk-key.pem -r $PK_FRONTEND_PATH/build ubuntu@$PK_SERVICE_IP:~
+scp -i $PK_INFRA_PATH/pk-key.pem -r $PK_INFRA_PATH/scripts/nginx.sh ubuntu@$PK_SERVICE_IP:~/scripts
+scp -i $PK_INFRA_PATH/pk-key.pem -r $PK_INFRA_PATH/scripts/nginx-setup.sh ubuntu@$PK_SERVICE_IP:~/scripts
+scp -i $PK_INFRA_PATH/pk-key.pem $PK_INFRA_PATH/nginx/myapp.conf ubuntu@$PK_SERVICE_IP:~/nginx

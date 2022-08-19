@@ -1,4 +1,3 @@
-sed -n 1p /Users/pkeugine/Projects/kurly/infra/ip.txt | awk -F'"' '{print $2}'
-sed -n 2p /Users/pkeugine/Projects/kurly/infra/ip.txt | awk -F'"' '{print $2}'
-app_server_ip=$(echo "$a" | sed -n 2p ../ip.txt | awk -F'"' '{print $2}')
-echo "REACT_APP_API_SERVER=http://${app_server_ip}:8080" > /Users/pkeugine/Projects/kurly/infra/production/.env.production
+echo "REACT_APP_API_SERVER=http://$PK_API_DOMAIN_NAME:8080" > $PK_ABSOLUTE_PATH/production/.env.production
+echo "cors:" > $PK_ABSOLUTE_PATH/production/application-prod.yml
+echo "  allowed-origins: http://$PK_SERVICE_DOMAIN_NAME, https://$PK_SERVICE_DOMAIN_NAME" >> $PK_ABSOLUTE_PATH/production/application-prod.yml

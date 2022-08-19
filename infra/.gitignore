@@ -1,7 +1,6 @@
-terraform*
+terraform.*
 .terraform*
 *.pem
 pkeugine_accessKeys.csv
 production
 ssl
-ip.txt
