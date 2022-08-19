@@ -36,14 +36,30 @@ resource "aws_instance" "dev_nginx_server" {
   }
 }
 
-output "dev_app_server_public_ip" {
-  description = "Public IP address of DevAppServer"
-  value       = aws_instance.dev_app_server.public_ip
+resource "aws_instance" "dev_mariadb_server" {
+  ami                    = "ami-0ea5eb4b05645aa8a"
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.pk_key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_mariadb_security_group.id]
+
+  tags = {
+    Name = "DevMariadbServer"
+  }
 }
 
 output "dev_nginx_server_public_ip" {
   description = "Public IP address of DevNginxServer"
   value       = aws_instance.dev_nginx_server.public_ip
+}
+
+output "dev_app_server_public_ip" {
+  description = "Public IP address of DevAppServer"
+  value       = aws_instance.dev_app_server.public_ip
+}
+
+output "dev_mariadb_server_public_ip" {
+  description = "Public IP address of DevMariadbServer"
+  value       = aws_instance.dev_mariadb_server.public_ip
 }
 
 resource "aws_security_group" "dev_security_group" {
@@ -115,6 +131,22 @@ resource "aws_security_group" "dev_nginx_security_group" {
       security_groups  = []
       self             = false
       to_port          = 443
+    }
+  ]
+}
+
+resource "aws_security_group" "dev_mariadb_security_group" {
+  ingress = [
+    {
+      cidr_blocks      = ["0.0.0.0/0", ]
+      description      = "db tcp connection"
+      from_port        = 3306
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      protocol         = "tcp"
+      security_groups  = []
+      self             = false
+      to_port          = 3306
     }
   ]
 }
