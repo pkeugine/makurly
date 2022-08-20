@@ -31,17 +31,25 @@ const Modal = ({ closeFunc, itemId }) => {
     setTotalPrice(quantity * price);
   }, [quantity]);
 
-  // const submitCart = () => {
-  //   if (!isLogin()) {
-  //     alert("로그인을 해주세요!");
-  //     return;
-  //   }
-  //   let body = {
-  //     customerId: id,
-  //     itemId: id,
-  //   };
-  //   axios.post();
-  // };
+  const submitCart = () => {
+    if (!isLogin()) {
+      alert("로그인을 해주세요!");
+      return;
+    }
+    let body = {
+      customerId: window.localStorage.getItem("user-id"),
+      itemId: id,
+      quantity: quantity,
+    };
+    axios
+      .post(API_SERVER + "/carts/add", body)
+      .then((res) => {
+        closeFunc();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="modal-background">
@@ -103,6 +111,7 @@ const Modal = ({ closeFunc, itemId }) => {
                   width: "200px",
                   height: "50px",
                 }}
+                onClick={submitCart}
               >
                 장바구니 담기
               </button>

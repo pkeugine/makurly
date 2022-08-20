@@ -30,7 +30,7 @@ function Header(logoutFunc) {
               <div className="bar"></div>
               <button
                 style={{
-                  backgroundColor: "white",
+                  backgroundColor: "transparent",
                   border: "none",
                   padding: "0px",
                 }}
