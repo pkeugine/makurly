@@ -1,5 +1,6 @@
 .signin-page-container {
   min-width: 1050px;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -16,14 +16,13 @@ function SignInPage() {
       name: name,
     };
     axios
-      .post(API_SERVER + "/customers/login", body)
+      .post(API_SERVER + "/customers/sign-in", body)
       .then((res) => {
         var userId = res.data.id;
         var userIdString = userId.toString();
         window.localStorage.setItem("isLogin", "true");
         window.localStorage.setItem("user-id", userIdString);
         window.localStorage.setItem("user-name", res.data.name);
-        alert("로그인 완료");
         navigate("/");
       })
       .catch((err) => {
