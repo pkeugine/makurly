@@ -2,6 +2,7 @@
 data
 etc
 share
+*.pkl
 
 # Environments
 .env
