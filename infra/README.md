@@ -9,10 +9,19 @@
 - [ ] 인스턴스 shell ui 변경 (인스턴스 용도 및 public ip 보이면 좋을듯)
 
 - [ ] database 생성
+    - [x] use mariadb
+    - [x] fill in data
+    - [ ] switch to RDS if I have the time
+    - [ ] automate the process
 - [ ] brain 서버 생성
     - [x] initiate flask project
-    - [ ] use models and run the server
+    - [x] use models and run the server
     - [ ] flask server should install python3 and start venv
+    - [ ] check how to build flask production server
+    - [ ] add flask instance
+        - [ ] automate the process
+
+- [ ] setup private network
 
 * remember: to use environment variables, use `source script.sh` to execute command
 ### 준비물
@@ -71,7 +80,11 @@
 - [ ] install minimum required packages in instances
 - [x] automatic (default) CORS setup
 - [x] HSTS
-- [ ] alias ssh commands so user doesn't have to keep track of public ip
+- [x] alias ssh commands so user doesn't have to keep track of public ip
+    - [x] nginx
+    - [x] spring
+    - [ ] database
+    - [ ] flask
 - [x] create pem key to access instances, delete pem key when destroying resources
 - [x] default network security setting
     - [x] port 22 for SSH (all instances)
