@@ -21,20 +21,25 @@ public class CustomerService {
 
     public CustomerResponse createCustomer(CustomerRequest customerRequest){
         Customer newCustomer=customerRequest.toEntity();
-        Customer existedCustomer = customerRepository.findByName(customerRequest.getName()).orElse(null);
+        Customer existedCustomer = customerRepository
+                .findByName(customerRequest.getName())
+                .orElseThrow(UserAlreadyExistException::new);
 
-        if(existedCustomer != null){
-            throw new UserAlreadyExistException();
-        }
         customerRepository.save(newCustomer);
         return CustomerResponse.of(newCustomer);
     }
 
     public CustomerResponse signIn(String customerName){
-        Customer existedCustomer = customerRepository.findByName(customerName).orElse(null);
-        if(existedCustomer == null){
-            throw new UserNotExistException();
-        }
+        Customer existedCustomer = customerRepository.
+                findByName(customerName)
+                .orElseThrow(UserNotExistException::new);
         return CustomerResponse.of(existedCustomer);
+    }
+
+    public CustomerResponse getCustomerById(Long id){
+        Customer customer = customerRepository
+                .findById(id)
+                .orElseThrow(UserNotExistException::new);
+        return CustomerResponse.of(customer);
     }
 }

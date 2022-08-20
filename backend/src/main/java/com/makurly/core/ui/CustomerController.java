@@ -37,4 +37,13 @@ public class CustomerController {
                 .status(HttpStatus.OK)
                 .body(responseBody);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerResponse> findCustomerById(@PathVariable Long id){
+        CustomerResponse responseBody = customerService.getCustomerById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(responseBody);
+    }
 }

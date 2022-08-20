@@ -51,11 +51,9 @@ public class Interaction {
     public Interaction() {
     }
 
-    public Interaction(Customer customer, LocalDateTime orderDate, List<Recommend> recommends,
-                       List<InteractionItem> interactionItems) {
+    public Interaction(Customer customer, LocalDateTime orderDate) {
         this.customer = customer;
         this.orderDate = orderDate;
-        this.recommends = recommends;
-        this.interactionItems = interactionItems;
+
     }
 }
