@@ -2,27 +2,46 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API_SERVER } from "../../config";
 import "./style.css";
+import isLogin from "../../utils/isLogin";
 const Modal = ({ closeFunc, itemId }) => {
   const [id, setId] = useState(itemId);
   const [name, setName] = useState(0);
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
-
+  const [totalPrice, setTotalPrice] = useState(0);
   const changePriceFormat = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   useEffect(() => {
+    console.log(window.localStorage.getItem("user-id"));
     axios
       .get(API_SERVER + `/items/${itemId}`)
       .then((res) => {
         setName(res.data.name);
         setPrice(res.data.price);
+        setTotalPrice(res.data.price);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    setTotalPrice(quantity * price);
+  }, [quantity]);
+
+  // const submitCart = () => {
+  //   if (!isLogin()) {
+  //     alert("로그인을 해주세요!");
+  //     return;
+  //   }
+  //   let body = {
+  //     customerId: id,
+  //     itemId: id,
+  //   };
+  //   axios.post();
+  // };
 
   return (
     <div className="modal-background">
@@ -35,16 +54,33 @@ const Modal = ({ closeFunc, itemId }) => {
             </div>
             <div className="b">
               <div className="count-container">
-                <button className="count-button">-</button>
+                <button
+                  className="count-button"
+                  disabled={quantity === 1}
+                  onClick={() => {
+                    setQuantity(quantity - 1);
+                  }}
+                >
+                  -
+                </button>
                 <div className="count">{quantity}</div>
-                <button className="count-button">+</button>
+                <button
+                  className="count-button"
+                  onClick={() => {
+                    setQuantity(quantity + 1);
+                  }}
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>
           <div className="mid">
             <div className="price-container">
               <div className="total">합계</div>
-              <div className="total-price">{changePriceFormat(price)}원</div>
+              <div className="total-price">
+                {changePriceFormat(totalPrice)}원
+              </div>
             </div>
           </div>
           <div className="bottom">
