@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CartItem from "./CartItem";
+import { useNavigate } from "react-router-dom";
 import { GrLocation } from "react-icons/gr";
 import "./style.css";
 import isLogin from "../../utils/isLogin";
@@ -11,25 +12,24 @@ function CartPage() {
   const [mainAddress, setMainAddress] = useState("");
   const [detailedAddress, setDetailedAddress] = useState("");
   const [carts, setCarts] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(API_SERVER + `/carts?id=${window.localStorage.getItem("user-id")}`)
       .then((res) => {
         const result = [];
         const arr = res.data;
-        var tempTotalPrice = 0;
-        arr.map((elem) => {
+        for (var elem of arr) {
           var cart = elem;
-          tempTotalPrice += cart.item.price * cart.quantity;
           cart.checked = true;
           result.push(cart);
-        });
+        }
         setCarts(result);
       })
       .catch((err) => {
         console.log(err);
       });
+
     axios
       .get(API_SERVER + `/customers/${window.localStorage.getItem("user-id")}`)
       .then((res) => {
@@ -48,7 +48,7 @@ function CartPage() {
   const changeCarts = (updateCart) => {
     const findIndex = carts.findIndex((cart) => cart.id === updateCart.id);
     let copiedCarts = [...carts];
-    if (findIndex != -1) {
+    if (findIndex !== -1) {
       copiedCarts[findIndex] = { ...copiedCarts[findIndex], ...updateCart };
     }
     setCarts(copiedCarts);
@@ -56,11 +56,12 @@ function CartPage() {
 
   const finalPrice = () => {
     var price = 0;
-    carts.map((cart) => {
+    for (var cart of carts) {
       if (cart.checked) {
         price += cart.quantity * cart.item.price;
       }
-    });
+    }
+
     return price;
   };
 
@@ -74,7 +75,47 @@ function CartPage() {
       />
     );
   }
+  const submit = () => {
+    var cartIds = [];
+    var interactionItems = [];
+    for (var cart of carts) {
+      if (cart.checked) {
+        cartIds.push(cart.id);
+        interactionItems.push({
+          itemId: cart.item.id,
+          quantity: cart.quantity,
+        });
+      }
+    }
 
+    if (cartIds.length === 0) {
+      alert("주문할 수 있는 상품이 없습니다.");
+      return;
+    }
+
+    const body = {
+      customerId: window.localStorage.getItem("user-id"),
+      interactionItems: interactionItems,
+    };
+    const body2 = {
+      cartIds: cartIds,
+    };
+    axios
+      .post(API_SERVER + "/interactions", body)
+      .then((res) => {
+        axios
+          .post(API_SERVER + "/carts/delete", body2)
+          .then((res) => {
+            navigate("/recommend");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="cart-page-container">
       <div className="form-container">
@@ -99,7 +140,9 @@ function CartPage() {
               <div>상품 금액</div>
               <div>{changePriceFormat(finalPrice())}원</div>
             </div>
-            <button className="order-button button1">주문하기</button>
+            <button className="order-button button1" onClick={submit}>
+              주문하기
+            </button>
           </div>
         </div>
       </div>

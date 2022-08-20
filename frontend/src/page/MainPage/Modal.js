@@ -4,7 +4,7 @@ import { API_SERVER } from "../../config";
 import "./style.css";
 import isLogin from "../../utils/isLogin";
 const Modal = ({ closeFunc, itemId }) => {
-  const [id, setId] = useState(itemId);
+  const id = itemId;
   const [name, setName] = useState(0);
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -14,7 +14,6 @@ const Modal = ({ closeFunc, itemId }) => {
   };
 
   useEffect(() => {
-    console.log(window.localStorage.getItem("user-id"));
     axios
       .get(API_SERVER + `/items/${itemId}`)
       .then((res) => {
@@ -25,10 +24,12 @@ const Modal = ({ closeFunc, itemId }) => {
       .catch((err) => {
         console.log(err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     setTotalPrice(quantity * price);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quantity]);
 
   const submitCart = () => {

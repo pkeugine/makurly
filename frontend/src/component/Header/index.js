@@ -33,6 +33,7 @@ function Header(logoutFunc) {
                   backgroundColor: "transparent",
                   border: "none",
                   padding: "0px",
+                  fontSize: "12px",
                 }}
                 className="direct"
                 onClick={logout}
