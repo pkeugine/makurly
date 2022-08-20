@@ -4,3 +4,5 @@ spring:
 
   jpa:
     defer-datasource-initialization: true
+
+recommend-api: http://localhost:5000

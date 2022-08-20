@@ -38,7 +38,6 @@ public class InteractionService {
             Item item = itemRepository.findById(interactionItemRequest
                     .getItemId())
                     .orElseThrow(NoSuchElementException::new);
-            System.out.println(interactionItemRequest.getQuantity());
             InteractionItem interactionItem = new InteractionItem(interactionItemRequest.getQuantity(),interaction,item);
             interactionItemRepository.save(interactionItem);
         });

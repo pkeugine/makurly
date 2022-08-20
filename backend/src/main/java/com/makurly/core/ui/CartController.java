@@ -4,9 +4,12 @@ import com.makurly.core.application.CartService;
 import com.makurly.core.ui.dto.CartDeleteRequest;
 import com.makurly.core.ui.dto.CartRequest;
 import com.makurly.core.ui.dto.CartResponse;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 
@@ -49,7 +52,6 @@ public class CartController {
         List<CartResponse> responseBody = cartService.findCartsByCustomerId(customerId);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
-
 
 
 }
