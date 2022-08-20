@@ -12,8 +12,17 @@ import java.util.NoSuchElementException;
 public class ExceptionController {
 
     @ExceptionHandler({NoSuchElementException.class, EmptyResultDataAccessException.class})
-    public ResponseEntity<String> handle(Exception ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당 상품을 찾을 수 없습니다");
+    public ResponseEntity<ExceptionDto> notFound(Exception ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDto("해당 상품이 존재하지 않습니다."));
+    }
 
+    @ExceptionHandler({UserAlreadyExistException.class})
+    public ResponseEntity<ExceptionDto> alreadyExist(Exception ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDto("해당 이름의 유저는 이미 존재합니다."));
+    }
+
+    @ExceptionHandler({UserNotExistException.class})
+    public ResponseEntity<ExceptionDto> userNotExist(Exception ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionDto("해당 유저 정보가 없습니다."));
     }
 }
