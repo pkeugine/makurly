@@ -15,9 +15,34 @@
 
 .main-page-container .recommend-container .label-container {
   font-size: 30px;
-  padding-bottom: 50px;
 }
 
+.main-page-container .recommend-container .category-container {
+  width: 1050px;
+  border: solid 1px rgb(217, 217, 217);
+  padding: 20px 0px;
+  display: flex;
+  margin: 20px 0px;
+  flex-wrap: wrap;
+}
+
+.main-page-container .recommend-container .category-container .category {
+  width: 262px;
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+  font-size: 15px;
+  background: none;
+  border: none;
+}
+.main-page-container .recommend-container .category-container .category:hover {
+  color: rgb(95, 0, 128);
+  font-weight: bold;
+}
+.main-page-container .recommend-container .category-container .category:focus {
+  color: rgb(95, 0, 128);
+  font-weight: bold;
+}
 .main-page-container .recommend-container .items-container {
   display: flex;
   justify-content: space-between;
