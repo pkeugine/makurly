@@ -6,9 +6,11 @@ import { API_SERVER } from "../../config";
 import "./style.css";
 
 function MainPage() {
+  //state
   const [modalVisible, setModalVisible] = useState(false);
   const [items, setItems] = useState([]);
   const [clickItem, setClickItem] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("전체보기");
   const categories = [
     "전체보기",
     "샐러드·닭가슴살",
@@ -30,7 +32,6 @@ function MainPage() {
     "커피",
     "차",
   ];
-  const [selectedCategory, setSelectedCategory] = useState("전체보기");
 
   useEffect(() => {
     axios

@@ -3,9 +3,12 @@ import { AiFillCheckCircle, AiOutlineCheckCircle } from "react-icons/ai";
 import "./style.css";
 
 function CartItem({ cart, handler }) {
+  //state
   const [cartInfo, setCartInfo] = useState(cart);
   const [checked, setChecked] = useState(cart.checked);
   const [quantity, setQuantity] = useState(cart.quantity);
+
+  //controller
   const changeCheck = () => {
     var copiedCartInfo = cartInfo;
     copiedCartInfo.checked = !checked;

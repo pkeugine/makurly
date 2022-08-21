@@ -7,6 +7,7 @@ import DaumPost from "./DaumPost";
 import { useNavigate } from "react-router-dom";
 
 function RegisterPage() {
+  //state
   const [name, setName] = useState("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
@@ -15,8 +16,8 @@ function RegisterPage() {
   const [device, setDevice] = useState("Android");
   const [mainAddress, setMainAddress] = useState("");
   const [detailedAddress, setDetailedAddress] = useState("");
-
   const [isOpenPost, setIsOpenPost] = useState(false);
+
   const onChangeOpenPost = () => {
     setIsOpenPost(!isOpenPost);
   };

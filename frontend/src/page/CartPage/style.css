@@ -202,7 +202,6 @@
   align-items: center;
   justify-content: flex-start;
 }
-
 .cart-page-container
   .form-container
   .cart-container
@@ -210,7 +209,6 @@
   .destination-description {
   font-size: 15px;
 }
-
 .cart-page-container .form-container .cart-container .b .destination-button {
   margin-top: 10px;
   margin-bottom: 20px;

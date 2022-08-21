@@ -9,10 +9,13 @@ import axios from "axios";
 import { API_SERVER } from "../../config";
 
 function CartPage() {
+  //state
   const [mainAddress, setMainAddress] = useState("");
   const [detailedAddress, setDetailedAddress] = useState("");
   const [carts, setCarts] = useState([]);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get(API_SERVER + `/carts?id=${window.localStorage.getItem("user-id")}`)
@@ -27,9 +30,8 @@ function CartPage() {
         setCarts(result);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
-
     axios
       .get(API_SERVER + `/customers/${window.localStorage.getItem("user-id")}`)
       .then((res) => {
@@ -37,14 +39,13 @@ function CartPage() {
         setDetailedAddress(res.data.detailedAddress);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   }, []);
 
   const changePriceFormat = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
-
   const changeCarts = (updateCart) => {
     const findIndex = carts.findIndex((cart) => cart.id === updateCart.id);
     let copiedCarts = [...carts];
@@ -53,7 +54,6 @@ function CartPage() {
     }
     setCarts(copiedCarts);
   };
-
   const finalPrice = () => {
     var price = 0;
     for (var cart of carts) {
@@ -61,10 +61,8 @@ function CartPage() {
         price += cart.quantity * cart.item.price;
       }
     }
-
     return price;
   };
-
   if (!isLogin()) {
     alert("로그인이 필요합니다");
     return (
@@ -87,12 +85,10 @@ function CartPage() {
         });
       }
     }
-
     if (cartIds.length === 0) {
       alert("주문할 수 있는 상품이 없습니다.");
       return;
     }
-
     const body = {
       customerId: window.localStorage.getItem("user-id"),
       interactionItems: interactionItems,
@@ -102,18 +98,18 @@ function CartPage() {
     };
     axios
       .post(API_SERVER + "/interactions", body)
-      .then((res) => {
+      .then(() => {
         axios
           .post(API_SERVER + "/carts/delete", body2)
-          .then((res) => {
+          .then(() => {
             navigate("/recommend");
           })
           .catch((err) => {
-            console.log(err);
+            alert.log(err);
           });
       })
       .catch((err) => {
-        console.log(err);
+        alert.log(err);
       });
   };
   return (

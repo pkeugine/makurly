@@ -5,6 +5,7 @@ import { API_SERVER } from "../../config";
 import { useNavigate } from "react-router-dom";
 
 function SignInPage() {
+  //state
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const nameHandler = (e) => {
