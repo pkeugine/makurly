@@ -28,6 +28,13 @@ public class Recommend {
 
     private Integer discountRate;
 
+    public Recommend(Customer customer, Interaction interaction, Item item, Integer discountRate) {
+        this.customer = customer;
+        this.interaction = interaction;
+        this.item = item;
+        this.discountRate = discountRate;
+    }
+
     public Long getId() {
         return id;
     }

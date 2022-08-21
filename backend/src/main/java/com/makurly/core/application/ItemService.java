@@ -1,6 +1,7 @@
 package com.makurly.core.application;
 
 
+import com.makurly.core.application.dto.RecommendResponse;
 import com.makurly.core.domain.Item;
 import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.ui.dto.ItemResponse;
@@ -9,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -44,4 +44,6 @@ public class ItemService {
         ItemResponse itemResponse = ItemResponse.of(item);
         return itemResponse;
     }
+
+
 }

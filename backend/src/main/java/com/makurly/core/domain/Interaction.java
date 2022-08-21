@@ -48,6 +48,10 @@ public class Interaction {
         return recommends;
     }
 
+    public List<InteractionItem> getInteractionItems() {
+        return interactionItems;
+    }
+
     public Interaction() {}
 
     public Interaction(Customer customer, LocalDateTime orderDate) {

@@ -25,6 +25,22 @@ public class InteractionItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public Interaction getInteraction() {
+        return interaction;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
     public InteractionItem() {}
 
     public InteractionItem(Integer quantity, Interaction interaction, Item item) {
