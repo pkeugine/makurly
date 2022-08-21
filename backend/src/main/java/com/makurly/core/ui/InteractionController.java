@@ -22,7 +22,9 @@ public class InteractionController {
     @PostMapping
     public ResponseEntity<Void> makeInteraction(@RequestBody InteractionRequest interactionRequest){
         interactionService.makeInteraction(interactionRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .build();
     }
 
 }

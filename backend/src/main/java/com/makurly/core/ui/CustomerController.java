@@ -23,7 +23,6 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerRequest customerRequest){
         CustomerResponse responseBody = customerService.createCustomer(customerRequest);
-
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(responseBody);
@@ -32,7 +31,6 @@ public class CustomerController {
     @PostMapping("/sign-in")
     public ResponseEntity<CustomerResponse> signIn(@RequestBody CustomerRequest customerRequest){
         CustomerResponse responseBody = customerService.signIn(customerRequest.getName());
-
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(responseBody);
@@ -41,7 +39,6 @@ public class CustomerController {
     @GetMapping("/{id}")
     public ResponseEntity<CustomerResponse> findCustomerById(@PathVariable Long id){
         CustomerResponse responseBody = customerService.getCustomerById(id);
-
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(responseBody);

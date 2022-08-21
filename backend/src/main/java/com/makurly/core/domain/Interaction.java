@@ -48,12 +48,10 @@ public class Interaction {
         return recommends;
     }
 
-    public Interaction() {
-    }
+    public Interaction() {}
 
     public Interaction(Customer customer, LocalDateTime orderDate) {
         this.customer = customer;
         this.orderDate = orderDate;
-
     }
 }

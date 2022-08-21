@@ -20,6 +20,5 @@ public class WebClientConfig {
        return WebClient.builder().baseUrl(recommendURI)
                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                .build();
-
     }
 }

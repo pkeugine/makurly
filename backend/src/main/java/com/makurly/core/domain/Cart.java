@@ -25,8 +25,7 @@ public class Cart {
 
     private Integer quantity;
 
-    public Cart() {
-    }
+    public Cart() {}
 
     public Cart(Customer customer, Item item, Integer quantity) {
         this.customer = customer;

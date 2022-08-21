@@ -25,8 +25,7 @@ public class InteractionItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    public InteractionItem() {
-    }
+    public InteractionItem() {}
 
     public InteractionItem(Integer quantity, Interaction interaction, Item item) {
         this.quantity = quantity;

@@ -18,6 +18,11 @@ public class WebClientController {
 
     @GetMapping("/test")
     public String apiTest(){
-        return webClient.get().uri("/").retrieve().bodyToMono(String.class).block();
+        return webClient
+                .get()
+                .uri("/")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
     }
 }

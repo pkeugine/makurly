@@ -1,10 +1,10 @@
 package com.makurly.core.exception;
 
-public class ExceptionDto {
+public class ExceptionResponse {
 
     String message;
 
-    public ExceptionDto(String message) {
+    public ExceptionResponse(String message) {
         this.message = message;
     }
 

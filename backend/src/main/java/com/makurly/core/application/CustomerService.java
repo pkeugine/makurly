@@ -21,10 +21,9 @@ public class CustomerService {
 
     public CustomerResponse createCustomer(CustomerRequest customerRequest){
         Customer newCustomer=customerRequest.toEntity();
-        Customer existedCustomer = customerRepository
-                .findByName(customerRequest.getName())
-                .orElseThrow(UserAlreadyExistException::new);
-
+        if(customerRepository.existsByName(customerRequest.getName())){
+            throw new UserAlreadyExistException();
+        }
         customerRepository.save(newCustomer);
         return CustomerResponse.of(newCustomer);
     }

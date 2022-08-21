@@ -14,8 +14,11 @@ import java.util.NoSuchElementException;
 public class InteractionService {
 
     private final CustomerRepository customerRepository;
+
     private final ItemRepository itemRepository;
+
     private final InteractionRepository interactionRepository;
+
     private final InteractionItemRepository interactionItemRepository;
 
     public InteractionService(CustomerRepository customerRepository,
@@ -37,7 +40,7 @@ public class InteractionService {
         interactionRequest.getInteractionItems().forEach(interactionItemRequest -> {
             Item item = itemRepository.findById(interactionItemRequest
                     .getItemId())
-                    .orElseThrow(NoSuchElementException::new);
+                    .orElseThrow();
             InteractionItem interactionItem = new InteractionItem(interactionItemRequest.getQuantity(),interaction,item);
             interactionItemRepository.save(interactionItem);
         });

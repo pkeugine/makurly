@@ -21,9 +21,12 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @Transient
     private int age;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -42,7 +45,6 @@ public class Customer {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL}, mappedBy = "customer", orphanRemoval = true)
     private List<Interaction> interactions = new ArrayList<>();
-
 
     protected Customer() {
     }

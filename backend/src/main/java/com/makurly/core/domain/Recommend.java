@@ -48,6 +48,5 @@ public class Recommend {
         return discountRate;
     }
 
-    public Recommend() {
-    }
+    public Recommend() {}
 }

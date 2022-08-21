@@ -26,31 +26,41 @@ public class CartController {
     @PostMapping("/add")
     public ResponseEntity<CartResponse> addCart(@RequestBody CartRequest cartRequest){
         CartResponse responseBody = cartService.addCart(cartRequest);
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(responseBody);
     }
 
     @PostMapping("/delete")
     public ResponseEntity<Void> deleteCarts(@RequestBody CartDeleteRequest cartDeleteRequest){
         cartService.deleteCarts(cartDeleteRequest);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteCart(@PathVariable Long id){
         cartService.deleteCart(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CartResponse> findCartById(@PathVariable(name="id") Long cartId){
         CartResponse responseBody = cartService.findCartById(cartId);
-        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(responseBody);
     }
 
     @GetMapping()
     public ResponseEntity<List<CartResponse>> findCartsByCustomerId(@RequestParam(name="id")Long customerId){
         List<CartResponse> responseBody = cartService.findCartsByCustomerId(customerId);
-        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(responseBody);
     }
 
 

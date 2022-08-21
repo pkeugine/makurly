@@ -15,7 +15,9 @@ import java.util.List;
 public class CartService {
 
     private final CartRepository cartRepository;
+
     private final CustomerRepository customerRepository;
+
     private final ItemRepository itemRepository;
 
     public CartService(CartRepository cartRepository, CustomerRepository customerRepository,
@@ -26,8 +28,12 @@ public class CartService {
     }
 
     public CartResponse addCart(CartRequest cartRequest){
-        Customer customer = customerRepository.findById(cartRequest.getCustomerId()).orElseThrow();
-        Item item = itemRepository.findById(cartRequest.getItemId()).orElseThrow();
+        Customer customer = customerRepository
+                .findById(cartRequest.getCustomerId())
+                .orElseThrow();
+        Item item = itemRepository
+                .findById(cartRequest.getItemId())
+                .orElseThrow();
         Cart cart = cartRequest.toEntity(customer,item);
         cartRepository.save(cart);
         return CartResponse.of(cart);
@@ -39,7 +45,9 @@ public class CartService {
     }
 
     public List<CartResponse> findCartsByCustomerId(Long customerId){
-        Customer customer = customerRepository.findById(customerId).orElseThrow();
+        Customer customer = customerRepository
+                .findById(customerId)
+                .orElseThrow();
         List<Cart> carts= cartRepository.findCartsByCustomer(customer);
         List<CartResponse> cartResponses = new ArrayList<>();
         carts.forEach(cart->{
@@ -57,5 +65,4 @@ public class CartService {
             cartRepository.deleteById(id);
         });
     }
-
 }

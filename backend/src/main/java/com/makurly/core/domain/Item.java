@@ -22,18 +22,11 @@ public class Item {
 
     private Integer price;
 
-
-    protected Item() {
-    }
+    protected Item() {}
 
     public Item(String name, String imageUrl) {
         this.name = name;
         this.imageUrl = imageUrl;
-    }
-
-    public void updateWith(Item other) {
-        this.name = other.name;
-        this.imageUrl = other.imageUrl;
     }
 
     public Long getId() {
@@ -55,6 +48,5 @@ public class Item {
     public Integer getPrice() {
         return price;
     }
-
 
 }

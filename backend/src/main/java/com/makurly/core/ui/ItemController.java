@@ -24,21 +24,24 @@ public class ItemController {
     @GetMapping
     public ResponseEntity<List<ItemResponse>> getAllItems(){
         List<ItemResponse> responseBody = itemService.getAllItems();
-
-        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(responseBody);
     }
 
     @GetMapping("/filter")
     public ResponseEntity<List<ItemResponse>> getItemsByCategory(@RequestParam String category){
         List<ItemResponse> responseBody = itemService.findItemsByCategory(category);
-
-        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(responseBody);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ItemResponse> getItemById(@PathVariable Long id){
         ItemResponse responseBody = itemService.findItemById(id);
-
-        return ResponseEntity.status(HttpStatus.OK).body(responseBody);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(responseBody);
     }
 }
