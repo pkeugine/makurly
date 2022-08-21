@@ -46,6 +46,7 @@ function CartPage() {
   const changePriceFormat = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
+
   const changeCarts = (updateCart) => {
     const findIndex = carts.findIndex((cart) => cart.id === updateCart.id);
     let copiedCarts = [...carts];
@@ -98,18 +99,24 @@ function CartPage() {
     };
     axios
       .post(API_SERVER + "/interactions", body)
-      .then(() => {
+      .then((res) => {
+        let id = res.data.id;
         axios
           .post(API_SERVER + "/carts/delete", body2)
           .then(() => {
-            navigate("/recommend");
+            navigate("/recommend", {
+              state: {
+                id: id,
+                price: changePriceFormat(finalPrice()),
+              },
+            });
           })
           .catch((err) => {
-            alert.log(err);
+            alert(err);
           });
       })
       .catch((err) => {
-        alert.log(err);
+        console.log(err);
       });
   };
   return (

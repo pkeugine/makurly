@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import RecommendCard from "./RecommendCard";
+import { API_SERVER } from "../../config";
 
 function RecommendPage() {
+  const location = useLocation();
+  const totalPrice = location.state.price;
+  const id = location.state.id;
+  const [recommends, setRecommends] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(API_SERVER + `/recommend/${id}`)
+      .then((res) => {
+        setRecommends(res.data);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []);
+
   return (
     <div className="recommend-page-container">
       <div className="order-finish">
@@ -18,19 +37,19 @@ function RecommendPage() {
         <div className="price-container">
           <div className="line">
             <div className="price-category">상품 금액</div>
-            <div className="price-content">30000원</div>
+            <div className="price-content">{totalPrice}원</div>
           </div>
           <div className="line">
             <div className="price-category">할인 금액</div>
-            <div className="price-content">-10000원</div>
+            <div className="price-content">-0원</div>
           </div>
           <div className="line">
             <div className="price-category">배송 금액</div>
-            <div className="price-content">+1000원</div>
+            <div className="price-content">+0원</div>
           </div>
           <div className="line big">
             <div className="final-category">총 결제금액</div>
-            <div className="final-price">21000원</div>
+            <div className="final-price">{totalPrice}원</div>
           </div>
         </div>
       </div>
@@ -49,11 +68,9 @@ function RecommendPage() {
           </div>
         </div>
         <div className="cards">
-          <RecommendCard></RecommendCard>
-          <RecommendCard></RecommendCard>
-          <RecommendCard></RecommendCard>
-          <RecommendCard></RecommendCard>
-          <RecommendCard></RecommendCard>
+          {recommends.map((recommend) => (
+            <RecommendCard recommend={recommend}></RecommendCard>
+          ))}
         </div>
       </div>
       <div className="button-container">

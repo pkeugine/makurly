@@ -4,6 +4,7 @@ import axios from "axios";
 import { API_SERVER } from "../../config";
 
 function UserInfoPage() {
+  //state
   const userId = window.localStorage.getItem("user-id");
   const [name, setName] = useState("");
   const [age, setAge] = useState("");

@@ -3,6 +3,7 @@ package com.makurly.core.application;
 import com.makurly.core.domain.*;
 import com.makurly.core.exception.UserNotExistException;
 import com.makurly.core.ui.dto.InteractionRequest;
+import com.makurly.core.ui.dto.InteractionResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +32,7 @@ public class InteractionService {
         this.interactionItemRepository = interactionItemRepository;
     }
 
-    public void makeInteraction(InteractionRequest interactionRequest){
+    public InteractionResponse makeInteraction(InteractionRequest interactionRequest){
         Customer customer = customerRepository
                 .findById(interactionRequest.getCustomerId())
                 .orElseThrow(UserNotExistException::new);
@@ -44,5 +45,6 @@ public class InteractionService {
             InteractionItem interactionItem = new InteractionItem(interactionItemRequest.getQuantity(),interaction,item);
             interactionItemRepository.save(interactionItem);
         });
+        return new InteractionResponse(interaction.getId());
     }
 }
