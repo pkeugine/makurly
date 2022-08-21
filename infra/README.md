@@ -1,12 +1,14 @@
 # TODO
 
-- [ ] alias and environment variables only last for current session!!!!!!!!!!!!!!!!
+- [x] alias and environment variables only last for current session!!!!!!!!!!!!!!!!
+    - created scripts/information.sh
 
 - [x] 백엔드(api) 서버 도메인 확보
-- [ ] apt update 즉시 실행
-- [ ] 필요한 패키지 다운로드 즉시 실행
-- [ ] mkdir 즉시 실행
-- [ ] 인스턴스 shell ui 변경 (인스턴스 용도 및 public ip 보이면 좋을듯)
+- [ ] make file for servers to run immediately
+    - [ ] apt update 즉시 실행
+    - [ ] 필요한 패키지 다운로드 즉시 실행
+    - [ ] mkdir 즉시 실행
+    - [ ] 인스턴스 shell ui 변경 (인스턴스 용도 및 public ip 보이면 좋을듯)
 
 - [ ] database 생성
     - [x] use mariadb
@@ -18,7 +20,7 @@
     - [x] use models and run the server
     - [ ] flask server should install python3 and start venv
     - [ ] check how to build flask production server
-    - [ ] add flask instance
+    - [x] add flask instance
         - [ ] automate the process
 
 - [ ] setup private network
@@ -83,8 +85,8 @@
 - [x] alias ssh commands so user doesn't have to keep track of public ip
     - [x] nginx
     - [x] spring
-    - [ ] database
-    - [ ] flask
+    - [x] database
+    - [x] flask
 - [x] create pem key to access instances, delete pem key when destroying resources
 - [x] default network security setting
     - [x] port 22 for SSH (all instances)

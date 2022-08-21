@@ -10,26 +10,26 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
+  profile = "jiho"
   region  = "ap-northeast-2"
 }
 
-resource "aws_instance" "dev_app_server" {
+resource "aws_instance" "dev_service_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.pk_key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_app_security_group.id]
+  vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_service_security_group.id]
 
   tags = {
     Name = "DevAppServer"
   }
 }
 
-resource "aws_instance" "dev_nginx_server" {
+resource "aws_instance" "dev_api_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.pk_key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_nginx_security_group.id]
+  vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_api_security_group.id, aws_security_group.dev_service_security_group.id]
 
   tags = {
     Name = "DevNginxServer"
@@ -47,19 +47,35 @@ resource "aws_instance" "dev_mariadb_server" {
   }
 }
 
-output "dev_nginx_server_public_ip" {
-  description = "Public IP address of DevNginxServer"
-  value       = aws_instance.dev_nginx_server.public_ip
+resource "aws_instance" "dev_flask_server" {
+  ami                    = "ami-0ea5eb4b05645aa8a"
+  instance_type          = "t2.micro"
+  key_name               = aws_key_pair.pk_key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_flask_security_group.id]
+
+  tags = {
+    Name = "DevFlaskServer"
+  }
 }
 
-output "dev_app_server_public_ip" {
+output "dev_api_server_public_ip" {
+  description = "Public IP address of DevNginxServer"
+  value       = aws_instance.dev_api_server.public_ip
+}
+
+output "dev_service_server_public_ip" {
   description = "Public IP address of DevAppServer"
-  value       = aws_instance.dev_app_server.public_ip
+  value       = aws_instance.dev_service_server.public_ip
 }
 
 output "dev_mariadb_server_public_ip" {
   description = "Public IP address of DevMariadbServer"
   value       = aws_instance.dev_mariadb_server.public_ip
+}
+
+output "dev_flask_server_public_ip" {
+  description = "Public IP address of DevFlaskServer"
+  value       = aws_instance.dev_flask_server.public_ip
 }
 
 resource "aws_security_group" "dev_security_group" {
@@ -92,7 +108,7 @@ resource "aws_security_group" "dev_security_group" {
   ]
 }
 
-resource "aws_security_group" "dev_app_security_group" {
+resource "aws_security_group" "dev_api_security_group" {
   ingress = [
     {
       cidr_blocks      = ["0.0.0.0/0", ]
@@ -108,7 +124,7 @@ resource "aws_security_group" "dev_app_security_group" {
   ]
 }
 
-resource "aws_security_group" "dev_nginx_security_group" {
+resource "aws_security_group" "dev_service_security_group" {
   ingress = [
     {
       cidr_blocks      = ["0.0.0.0/0", ]
@@ -147,6 +163,22 @@ resource "aws_security_group" "dev_mariadb_security_group" {
       security_groups  = []
       self             = false
       to_port          = 3306
+    }
+  ]
+}
+
+resource "aws_security_group" "dev_flask_security_group" {
+  ingress = [
+    {
+      cidr_blocks      = ["0.0.0.0/0", ]
+      description      = "flask tcp connection"
+      from_port        = 5000
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      protocol         = "tcp"
+      security_groups  = []
+      self             = false
+      to_port          = 5000
     }
   ]
 }
