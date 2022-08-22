@@ -23,7 +23,7 @@ public class WebClientService {
         this.webClient = webClient;
     }
 
-    public RecommendResponse getItemsFromInteraction(Long id) {
+    public RecommendResponse getItemsFromInteractionEx(Long id) {
         Interaction interaction = interactionRepository.findById(id).orElseThrow();
         Long customerId = interaction.getCustomer().getId();
         List<InteractionItem> interactions = interaction.getInteractionItems();
@@ -36,11 +36,33 @@ public class WebClientService {
         RecommendRequest body = new RecommendRequest(customerId, itemIds, id);
         RecommendResponse recommendResponse = webClient
             .post()
-            .uri("/recommend")
+            .uri("/ex-recommend")
             .bodyValue(body)
             .retrieve()
             .bodyToMono(RecommendResponse.class)
             .block();
+
+        return recommendResponse;
+    }
+    public RecommendResponse getItemsFromInteractionIm(Long id) {
+        Interaction interaction = interactionRepository.findById(id).orElseThrow();
+        Long customerId = interaction.getCustomer().getId();
+        List<InteractionItem> interactions = interaction.getInteractionItems();
+        List<Long> itemIds = new ArrayList<>();
+        interactions.forEach(interactionItem -> {
+            for (int i = 0; i < interactionItem.getQuantity(); i++) {
+                itemIds.add(interactionItem.getItem().getId());
+            }
+        });
+        RecommendRequest body = new RecommendRequest(customerId, itemIds, id);
+        RecommendResponse recommendResponse = webClient
+            .post()
+            .uri("/ex-recommend")
+            .bodyValue(body)
+            .retrieve()
+            .bodyToMono(RecommendResponse.class)
+            .block();
+
         return recommendResponse;
     }
 }

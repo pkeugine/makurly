@@ -8,10 +8,10 @@ public class RecommendResponse {
     @JsonProperty("items")
     private List<Long> itemIds;
 
-    @JsonProperty("user_id")
+    @JsonProperty("user_idx")
     private Long customerId;
 
-    @JsonProperty("interaction_id")
+    @JsonProperty("interaction_idx")
     private Long interactionId;
 
     public List<Long> getItemIds() {

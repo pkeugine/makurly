@@ -27,7 +27,7 @@ public class RecommendController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<PersonalRecommendResponse>> recommend(@PathVariable Long id) {
-        RecommendResponse recommendResponse = webClientService.getItemsFromInteraction(id);
+        RecommendResponse recommendResponse = webClientService.getItemsFromInteractionEx(id);
         List<PersonalRecommendResponse> body = recommendService.findItemsByIds(recommendResponse);
         return ResponseEntity
             .status(HttpStatus.OK)
