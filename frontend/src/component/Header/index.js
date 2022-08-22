@@ -68,7 +68,7 @@ function Header(logoutFunc) {
                 alt="logo"
               ></img>
             </a>
-            <div className="title-korean">마켓컬리</div>
+            <div className="title-korean">맠컬리</div>
           </div>
           <div className="search-engine">
             <div className="input-container">
