@@ -30,6 +30,11 @@ function SignInPage() {
         alert(err.response.data.message);
       });
   };
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      signIn();
+    }
+  };
 
   return (
     <div className="signin-page-container">
@@ -41,6 +46,7 @@ function SignInPage() {
             onChange={nameHandler}
             className="input-box"
             placeholder="이름을 입력해주세요"
+            onKeyPress={onKeyPress}
           ></input>
         </div>
         <div className="input-layer">

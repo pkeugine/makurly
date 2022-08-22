@@ -8,9 +8,11 @@ import RecommendPage from "./page/RecomendPage";
 import CartPage from "./page/CartPage";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import Banner from "./component/Banner";
 function App() {
   return (
     <div className="App">
+      <Banner></Banner>
       <Header logoutFunc></Header>
       <Routes>
         <Route path="/" element={<MainPage />} />

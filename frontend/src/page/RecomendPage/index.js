@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import RecommendCard from "./RecommendCard";
 import { API_SERVER } from "../../config";
 
 function RecommendPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const totalPrice = location.state.price;
   const id = location.state.id;
   const [recommends, setRecommends] = useState([]);
@@ -20,6 +21,7 @@ function RecommendPage() {
       .catch((err) => {
         alert(err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -75,7 +77,14 @@ function RecommendPage() {
       </div>
       <div className="button-container">
         <button className="button2 button">주문 상세보기</button>
-        <button className="button1 button">쇼핑 계속하기</button>
+        <button
+          className="button1 button"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          쇼핑 계속하기
+        </button>
       </div>
     </div>
   );

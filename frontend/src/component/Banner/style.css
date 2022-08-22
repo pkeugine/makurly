@@ -1,0 +1,27 @@
+.Banner {
+  height: 50px;
+  background-color: rgb(95, 0, 128);
+  display: flex;
+  color: white;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 1050px;
+}
+.Banner .inner {
+  display: flex;
+  color: white;
+  font-weight: bold;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 1050px;
+}
+.Banner .inner .blank {
+  width: 24px;
+}
+
+.Banner .inner .exit-container {
+  width: 24px;
+}

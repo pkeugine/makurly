@@ -51,6 +51,9 @@ const Modal = ({ closeFunc, itemId }) => {
         console.log(err);
       });
   };
+  const close = () => {
+    closeFunc();
+  };
 
   return (
     <div className="modal-background">
@@ -100,9 +103,7 @@ const Modal = ({ closeFunc, itemId }) => {
                   width: "200px",
                   height: "50px",
                 }}
-                onClick={() => {
-                  closeFunc();
-                }}
+                onClick={close}
               >
                 취소
               </button>

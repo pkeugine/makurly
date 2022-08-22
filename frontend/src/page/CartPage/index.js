@@ -29,18 +29,14 @@ function CartPage() {
         }
         setCarts(result);
       })
-      .catch((err) => {
-        alert(err);
-      });
+      .catch((err) => {});
     axios
       .get(API_SERVER + `/customers/${window.localStorage.getItem("user-id")}`)
       .then((res) => {
         setMainAddress(res.data.mainAddress);
         setDetailedAddress(res.data.detailedAddress);
       })
-      .catch((err) => {
-        alert(err);
-      });
+      .catch((err) => {});
   }, []);
 
   const changePriceFormat = (price) => {
