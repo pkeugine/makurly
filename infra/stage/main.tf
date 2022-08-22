@@ -19,10 +19,9 @@ resource "aws_instance" "dev_service_server" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_service_security_group.id]
-  user_data              = file("setup-service.sh")
 
   tags = {
-    Name = "DevNginxServer"
+    Name = "DevAppServer"
   }
 }
 
@@ -31,10 +30,9 @@ resource "aws_instance" "dev_api_server" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_api_security_group.id, aws_security_group.dev_service_security_group.id]
-  user_data              = file("setup-api.sh")
 
   tags = {
-    Name = "DevAppServer"
+    Name = "DevNginxServer"
   }
 }
 
@@ -43,21 +41,6 @@ resource "aws_instance" "dev_mariadb_server" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_mariadb_security_group.id]
-  user_data              = file("setup-database.sh")
-
-  /*
-  provisioner "file" {
-    source      = "50-server.cnf"
-    destination = "~/50-server.cnf"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file("pk-key.pem")
-      host        = self.public_dns
-    }
-  }
-  */
 
   tags = {
     Name = "DevMariadbServer"
@@ -69,21 +52,6 @@ resource "aws_instance" "dev_flask_server" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_flask_security_group.id]
-  user_data              = file("setup-flask.sh")
-
-  /*
-  provisioner "file" {
-    source      = "../brain/"
-    destination = "~/50-server.cnf"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file("pk-key.pem")
-      host        = self.public_dns
-    }
-  }
-  */
 
   tags = {
     Name = "DevFlaskServer"

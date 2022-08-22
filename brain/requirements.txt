@@ -17,6 +17,7 @@ entrypoints==0.4
 executing==0.10.0
 fastjsonschema==2.16.1
 Flask==2.2.2
+greenlet==1.1.2
 idna==3.3
 importlib-metadata==4.12.0
 ipykernel==6.15.1
@@ -37,6 +38,7 @@ lxml==4.9.1
 MarkupSafe==2.1.1
 matplotlib-inline==0.1.6
 mistune==0.8.4
+mysqlclient==2.1.1
 nbclient==0.6.6
 nbconvert==6.5.3
 nbformat==5.4.0
@@ -68,6 +70,7 @@ scipy==1.9.0
 Send2Trash==1.8.0
 six==1.16.0
 soupsieve==2.3.2.post1
+SQLAlchemy==1.4.40
 stack-data==0.4.0
 terminado==0.15.0
 tinycss2==1.1.1
