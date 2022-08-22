@@ -1,28 +1,41 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import RecommendCard from "./RecommendCard";
 import { API_SERVER } from "../../config";
+import isLogin from "../../utils/isLogin";
 
 function RecommendPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const totalPrice = location.state.price;
-  const id = location.state.id;
+  const totalPrice = location.state ? location.state.price : null;
+  const id = location.state ? location.state.id : null;
   const [recommends, setRecommends] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(API_SERVER + `/recommend/${id}`)
-      .then((res) => {
-        setRecommends(res.data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    if (id) {
+      axios
+        .get(API_SERVER + `/recommend/${id}`)
+        .then((res) => {
+          setRecommends(res.data);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!isLogin() || !totalPrice || !id) {
+    return (
+      <Navigate
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
+  }
 
   return (
     <div className="recommend-page-container">
