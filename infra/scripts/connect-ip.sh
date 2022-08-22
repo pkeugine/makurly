@@ -1,4 +1,4 @@
-echo "REACT_APP_API_SERVER=http://$PK_API_DOMAIN_NAME" > $PK_INFRA_PATH/production/.env.production
+echo "REACT_APP_API_SERVER=https://$PK_API_DOMAIN_NAME" > $PK_INFRA_PATH/production/.env.production
 echo "spring:" > $PK_INFRA_PATH/production/application-prod.yml
 echo "  datasource:" >> $PK_INFRA_PATH/production/application-prod.yml
 echo "    driver-class-name: org.mariadb.jdbc.Driver" >> $PK_INFRA_PATH/production/application-prod.yml

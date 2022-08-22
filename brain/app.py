@@ -13,16 +13,53 @@ class CustomUnpickler(pickle.Unpickler):
 		if name == 'implicitMF_recommender':
 			from recommender import implicitMF_recommender
 			return implicitMF_recommender
+		if name == 'recommender_explicitMF':
+			from recommender import recommender_explicitMF
+			return recommender_explicitMF
+		if name == 'recommender_implicitMF':
+			from recommender import recommender_implicitMF
+			return recommender_implicitMF
 		return super().find_class(module, name)
 
 
 explicitMF = CustomUnpickler(open('explicitMF.pkl', 'rb')).load()
 implicitMF = CustomUnpickler(open('implicitMF.pkl', 'rb')).load()
+exMF = CustomUnpickler(open('exMF.pkl', 'rb')).load()
+imMF = CustomUnpickler(open('imMF.pkl', 'rb')).load()
 
 
 @app.route('/')
 def hello_world():  # put application's code here
 	return 'Hello World!'
+
+
+@app.route('/ex-recommend', methods=['POST'])
+def recommend_explicit():
+	request_body = request.get_json()
+	user = request_body['user_idx']
+	interaction_idx = request_body['interaction_idx']
+	result = exMF.predict_topN(N=5, user_idx=user)
+	response = {
+		"user_idx": user,
+		"items": result["top_N_item_id"],
+		"interaction_idx": interaction_idx
+	}
+	return response
+
+
+@app.route('/im-recommend', methods=['POST'])
+def recommend_implicit():
+	request_body = request.get_json()
+	user = request_body['user_idx']
+	interaction_idx = request_body['interaction_idx']
+	result = imMF.predict_topN(N=5, user_idx=user)
+	response = {
+		"user_idx": user,
+		"items": result["top_N_item_id"],
+		"interaction_idx": interaction_idx
+	}
+	return response
+
 
 
 @app.route('/explicit-recommend', methods=['POST'])
