@@ -1,15 +1,13 @@
 package com.makurly.core.application;
 
 
-import com.makurly.core.application.dto.RecommendResponse;
 import com.makurly.core.domain.Item;
 import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.ui.dto.ItemResponse;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
@@ -21,7 +19,7 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<ItemResponse> getAllItems(){
+    public List<ItemResponse> getAllItems() {
         List<Item> items = itemRepository.findAll();
         List<ItemResponse> itemResponses = new ArrayList<>();
         items.forEach(item -> {
@@ -30,7 +28,7 @@ public class ItemService {
         return itemResponses;
     }
 
-    public List<ItemResponse> findItemsByCategory(String category){
+    public List<ItemResponse> findItemsByCategory(String category) {
         List<Item> items = itemRepository.findAllByCategory(category);
         List<ItemResponse> itemResponses = new ArrayList<>();
         items.forEach(item -> {
@@ -39,7 +37,7 @@ public class ItemService {
         return itemResponses;
     }
 
-    public ItemResponse findItemById(Long id){
+    public ItemResponse findItemById(Long id) {
         Item item = itemRepository.findById(id).orElseThrow();
         ItemResponse itemResponse = ItemResponse.of(item);
         return itemResponse;

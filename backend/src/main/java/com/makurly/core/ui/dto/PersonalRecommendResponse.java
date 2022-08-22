@@ -13,10 +13,10 @@ public class PersonalRecommendResponse {
         this.discountRate = discountRate;
     }
 
-    public static PersonalRecommendResponse of(Recommend recommend){
+    public static PersonalRecommendResponse of(Recommend recommend) {
         return new PersonalRecommendResponse(
-                ItemResponse.of(recommend.getItem()),
-                recommend.getDiscountRate());
+            ItemResponse.of(recommend.getItem()),
+            recommend.getDiscountRate());
     }
 
     public ItemResponse getItem() {

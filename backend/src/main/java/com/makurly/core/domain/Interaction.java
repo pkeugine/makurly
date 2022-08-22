@@ -52,7 +52,8 @@ public class Interaction {
         return interactionItems;
     }
 
-    public Interaction() {}
+    public Interaction() {
+    }
 
     public Interaction(Customer customer, LocalDateTime orderDate) {
         this.customer = customer;

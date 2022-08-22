@@ -22,13 +22,13 @@ public class CartResponse {
         return quantity;
     }
 
-    public CartResponse(Long id,ItemResponse item, Integer quantity) {
+    public CartResponse(Long id, ItemResponse item, Integer quantity) {
         this.id = id;
         this.item = item;
         this.quantity = quantity;
     }
 
-    public static CartResponse of(Cart cart){
-        return new CartResponse(cart.getId(),ItemResponse.of(cart.getItem()), cart.getQuantity());
+    public static CartResponse of(Cart cart) {
+        return new CartResponse(cart.getId(), ItemResponse.of(cart.getItem()), cart.getQuantity());
     }
 }

@@ -42,12 +42,12 @@ public class ItemResponse {
         return category;
     }
 
-    public static ItemResponse of(Item item){
+    public static ItemResponse of(Item item) {
         return new ItemResponse(
-                item.getId(),
-                item.getName(),
-                item.getImageUrl(),
-                item.getCategory(),
-                item.getPrice());
+            item.getId(),
+            item.getName(),
+            item.getImageUrl(),
+            item.getCategory(),
+            item.getPrice());
     }
 }

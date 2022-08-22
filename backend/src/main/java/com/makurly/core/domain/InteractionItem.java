@@ -41,7 +41,8 @@ public class InteractionItem {
         return item;
     }
 
-    public InteractionItem() {}
+    public InteractionItem() {
+    }
 
     public InteractionItem(Integer quantity, Interaction interaction, Item item) {
         this.quantity = quantity;

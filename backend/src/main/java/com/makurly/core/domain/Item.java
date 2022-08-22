@@ -15,14 +15,15 @@ public class Item {
 
     private String name;
 
-    @Column(name="img_url")
+    @Column(name = "img_url")
     private String imageUrl;
 
     private String category;
 
     private Integer price;
 
-    protected Item() {}
+    protected Item() {
+    }
 
     public Item(String name, String imageUrl) {
         this.name = name;

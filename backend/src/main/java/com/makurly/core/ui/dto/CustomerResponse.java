@@ -2,7 +2,6 @@ package com.makurly.core.ui.dto;
 
 import com.makurly.core.domain.Customer;
 import com.makurly.core.domain.Gender;
-
 import java.time.LocalDate;
 
 public class CustomerResponse {
@@ -21,7 +20,8 @@ public class CustomerResponse {
 
     private String detailedAddress;
 
-    public CustomerResponse(Long id, String name, Gender gender, LocalDate birthDate, String device, String mainAddress, String detailedAddress) {
+    public CustomerResponse(Long id, String name, Gender gender, LocalDate birthDate, String device, String mainAddress,
+                            String detailedAddress) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -59,15 +59,15 @@ public class CustomerResponse {
         return detailedAddress;
     }
 
-    public static CustomerResponse of(Customer customer){
+    public static CustomerResponse of(Customer customer) {
         return new CustomerResponse(
-                customer.getId(),
-                customer.getName(),
-                customer.getGender(),
-                customer.getBirthDate(),
-                customer.getDevice(),
-                customer.getMainAddress(),
-                customer.getDetailedAddress()
-                );
+            customer.getId(),
+            customer.getName(),
+            customer.getGender(),
+            customer.getBirthDate(),
+            customer.getDevice(),
+            customer.getMainAddress(),
+            customer.getDetailedAddress()
+        );
     }
 }

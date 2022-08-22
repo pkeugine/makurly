@@ -19,26 +19,26 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public CustomerResponse createCustomer(CustomerRequest customerRequest){
-        Customer newCustomer=customerRequest.toEntity();
-        if(customerRepository.existsByName(customerRequest.getName())){
+    public CustomerResponse createCustomer(CustomerRequest customerRequest) {
+        Customer newCustomer = customerRequest.toEntity();
+        if (customerRepository.existsByName(customerRequest.getName())) {
             throw new UserAlreadyExistException();
         }
         customerRepository.save(newCustomer);
         return CustomerResponse.of(newCustomer);
     }
 
-    public CustomerResponse signIn(String customerName){
+    public CustomerResponse signIn(String customerName) {
         Customer existedCustomer = customerRepository.
-                findByName(customerName)
-                .orElseThrow(UserNotExistException::new);
+            findByName(customerName)
+            .orElseThrow(UserNotExistException::new);
         return CustomerResponse.of(existedCustomer);
     }
 
-    public CustomerResponse getCustomerById(Long id){
+    public CustomerResponse getCustomerById(Long id) {
         Customer customer = customerRepository
-                .findById(id)
-                .orElseThrow(UserNotExistException::new);
+            .findById(id)
+            .orElseThrow(UserNotExistException::new);
         return CustomerResponse.of(customer);
     }
 }

@@ -1,14 +1,18 @@
 package com.makurly.core.application;
 
-import com.makurly.core.domain.*;
+import com.makurly.core.domain.Cart;
+import com.makurly.core.domain.CartRepository;
+import com.makurly.core.domain.Customer;
+import com.makurly.core.domain.CustomerRepository;
+import com.makurly.core.domain.Item;
+import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.ui.dto.CartDeleteRequest;
 import com.makurly.core.ui.dto.CartRequest;
 import com.makurly.core.ui.dto.CartResponse;
 import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
@@ -27,41 +31,41 @@ public class CartService {
         this.itemRepository = itemRepository;
     }
 
-    public CartResponse addCart(CartRequest cartRequest){
+    public CartResponse addCart(CartRequest cartRequest) {
         Customer customer = customerRepository
-                .findById(cartRequest.getCustomerId())
-                .orElseThrow();
+            .findById(cartRequest.getCustomerId())
+            .orElseThrow();
         Item item = itemRepository
-                .findById(cartRequest.getItemId())
-                .orElseThrow();
-        Cart cart = cartRequest.toEntity(customer,item);
+            .findById(cartRequest.getItemId())
+            .orElseThrow();
+        Cart cart = cartRequest.toEntity(customer, item);
         cartRepository.save(cart);
         return CartResponse.of(cart);
     }
 
-    public CartResponse findCartById(Long id){
+    public CartResponse findCartById(Long id) {
         Cart cart = cartRepository.findById(id).orElseThrow();
         return CartResponse.of(cart);
     }
 
-    public List<CartResponse> findCartsByCustomerId(Long customerId){
+    public List<CartResponse> findCartsByCustomerId(Long customerId) {
         Customer customer = customerRepository
-                .findById(customerId)
-                .orElseThrow();
-        List<Cart> carts= cartRepository.findCartsByCustomer(customer);
+            .findById(customerId)
+            .orElseThrow();
+        List<Cart> carts = cartRepository.findCartsByCustomer(customer);
         List<CartResponse> cartResponses = new ArrayList<>();
-        carts.forEach(cart->{
+        carts.forEach(cart -> {
             cartResponses.add(CartResponse.of(cart));
         });
         return cartResponses;
     }
 
-    public void deleteCart(Long id){
+    public void deleteCart(Long id) {
         cartRepository.deleteById(id);
     }
 
-    public void deleteCarts(CartDeleteRequest cartDeleteRequest){
-        cartDeleteRequest.getCartIds().forEach(id->{
+    public void deleteCarts(CartDeleteRequest cartDeleteRequest) {
+        cartDeleteRequest.getCartIds().forEach(id -> {
             cartRepository.deleteById(id);
         });
     }

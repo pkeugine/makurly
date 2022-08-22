@@ -25,7 +25,7 @@ public class CartRequest {
         return quantity;
     }
 
-    public Cart toEntity(Customer customer, Item item){
-        return new Cart(customer,item,quantity);
+    public Cart toEntity(Customer customer, Item item) {
+        return new Cart(customer, item, quantity);
     }
 }

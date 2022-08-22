@@ -21,12 +21,12 @@ public class InteractionController {
     }
 
     @PostMapping
-    public ResponseEntity<InteractionResponse> makeInteraction(@RequestBody InteractionRequest interactionRequest){
+    public ResponseEntity<InteractionResponse> makeInteraction(@RequestBody InteractionRequest interactionRequest) {
 
         InteractionResponse body = interactionService.makeInteraction(interactionRequest);
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(body);
+            .status(HttpStatus.CREATED)
+            .body(body);
     }
 
 }

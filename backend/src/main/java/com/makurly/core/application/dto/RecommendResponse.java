@@ -1,7 +1,6 @@
 package com.makurly.core.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 
 public class RecommendResponse {
