@@ -85,6 +85,7 @@
   align-items: center;
 }
 .navbar-container {
+  min-width: 1050px;
   display: flex;
   justify-content: center;
   border-bottom: solid 1px;
