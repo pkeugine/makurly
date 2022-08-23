@@ -158,6 +158,31 @@ function Banner() {
         )}
       </>
     );
+  } else if (location.pathname === "/dashboard") {
+    return (
+      <>
+        {isVisible ? (
+          <div className="Banner button">
+            <div className="inner">
+              <div className="blank"></div>
+              <div>대시보드를 확인하세요!</div>
+              <div
+                className="exit-container button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsVisible(false);
+                }}
+              >
+                {" "}
+                <AiOutlineClose size="20" className="exit"></AiOutlineClose>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+      </>
+    );
   } else {
     return (
       <>

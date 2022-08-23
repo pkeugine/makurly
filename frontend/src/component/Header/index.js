@@ -54,7 +54,13 @@ function Header(logoutFunc) {
               <div className="bar"></div>
             </>
           )}
-          <div className="direct">고객센터</div>
+          <a
+            href="/dashboard"
+            style={{ color: "rgb(95,0,126", fontWeight: "bold" }}
+            className="direct"
+          >
+            대시보드
+          </a>
         </div>
         <div className="mid">
           <div className="title">

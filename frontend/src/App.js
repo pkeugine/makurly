@@ -10,6 +10,7 @@ import CartPage from "./page/CartPage";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Banner from "./component/Banner";
+import DashboardPage from "./page/DashboardPage";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         <Route path="/user-info" element={<UserInfoPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/recommend" element={<RecommendPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>
       <Footer></Footer>
