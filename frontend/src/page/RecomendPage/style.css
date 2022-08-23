@@ -171,22 +171,26 @@
   object-fit: cover;
 }
 .card .card-container .price-container {
-  font-size: 30px;
-  bottom: 50px;
-  left: 33px;
+  font-size: 20px;
+  bottom: 40px;
+  left: 32px;
   position: absolute;
-  height: 50px;
+  height: 40px;
   width: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url("../../../public/img/discount.png");
+  background-repeat: no-repeat;
+  background-size: 120px 40px;
 }
 .card .card-container .price-container .discount-rate {
   font-weight: bold;
   margin: 5px;
-  color: #d1512d;
+  color: white;
 }
 .card .card-container .price-container .off {
   font-weight: bold;
+  color: white;
   margin: 5px;
 }
