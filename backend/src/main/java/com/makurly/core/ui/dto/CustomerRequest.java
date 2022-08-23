@@ -14,18 +14,7 @@ public class CustomerRequest {
     private String mainAddress;
     private String detailedAddress;
 
-    public CustomerRequest(String name,
-                           Gender gender,
-                           LocalDate birthDate,
-                           String device,
-                           String mainAddress,
-                           String detailedAddress) {
-        this.name = name;
-        this.gender = gender;
-        this.birthDate = birthDate;
-        this.device = device;
-        this.mainAddress = mainAddress;
-        this.detailedAddress = detailedAddress;
+    protected CustomerRequest() {
     }
 
     public Customer toEntity() {

@@ -6,20 +6,22 @@ import java.util.stream.Collectors;
 
 public class UserInteractionItemResponse {
 
-    private Long id;
-    private Integer quantity;
-    private ItemResponse item;
+    private final Long id;
+    private final Integer quantity;
+    private final ItemResponse item;
 
-    public UserInteractionItemResponse(Long id, Integer quantity, ItemResponse item) {
+    private UserInteractionItemResponse(Long id, Integer quantity, ItemResponse item) {
         this.id = id;
         this.quantity = quantity;
         this.item = item;
     }
 
-    public static UserInteractionItemResponse of(InteractionItem userInteraction){
-        return new UserInteractionItemResponse(userInteraction.getId()
-            ,userInteraction.getQuantity()
-            ,ItemResponse.of(userInteraction.getItem()));
+    public static UserInteractionItemResponse of(InteractionItem userInteraction) {
+        return new UserInteractionItemResponse(
+            userInteraction.getId(),
+            userInteraction.getQuantity(),
+            ItemResponse.of(userInteraction.getItem())
+        );
     }
 
     public static List<UserInteractionItemResponse> ofList(List<InteractionItem> interactionItems) {

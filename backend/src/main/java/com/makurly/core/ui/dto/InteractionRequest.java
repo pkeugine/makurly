@@ -7,6 +7,9 @@ public class InteractionRequest {
     private Long customerId;
     private List<InteractionItemRequest> interactionItems;
 
+    protected InteractionRequest() {
+    }
+
     public Long getCustomerId() {
         return customerId;
     }

@@ -6,21 +6,21 @@ import java.time.LocalDate;
 
 public class CustomerResponse {
 
-    private Long id;
-    private String name;
-    private Gender gender;
-    private LocalDate birthDate;
-    private String device;
-    private String mainAddress;
-    private String detailedAddress;
+    private final Long id;
+    private final String name;
+    private final Gender gender;
+    private final LocalDate birthDate;
+    private final String device;
+    private final String mainAddress;
+    private final String detailedAddress;
 
-    public CustomerResponse(Long id,
-                            String name,
-                            Gender gender,
-                            LocalDate birthDate,
-                            String device,
-                            String mainAddress,
-                            String detailedAddress) {
+    private CustomerResponse(Long id,
+                             String name,
+                             Gender gender,
+                             LocalDate birthDate,
+                             String device,
+                             String mainAddress,
+                             String detailedAddress) {
         this.id = id;
         this.name = name;
         this.gender = gender;

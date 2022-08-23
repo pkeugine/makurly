@@ -4,9 +4,9 @@ import com.makurly.core.domain.Cart;
 
 public class CartResponse {
 
-    private Long id;
-    private ItemResponse item;
-    private Integer quantity;
+    private final Long id;
+    private final ItemResponse item;
+    private final Integer quantity;
 
     public CartResponse(Long id, ItemResponse item, Integer quantity) {
         this.id = id;

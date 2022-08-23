@@ -11,7 +11,6 @@ import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.exception.UserNotExistException;
 import com.makurly.core.ui.dto.InteractionRequest;
 import com.makurly.core.ui.dto.InteractionResponse;
-import com.makurly.core.ui.dto.UserInteractionItemResponse;
 import com.makurly.core.ui.dto.UserInteractionResponse;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -55,7 +54,7 @@ public class InteractionService {
                 item);
             interactionItemRepository.save(interactionItem);
         });
-        return new InteractionResponse(interaction.getId());
+        return InteractionResponse.of(interaction);
     }
     public List<UserInteractionResponse> getUserInteractions(Long id){
         Customer customer = customerRepository.findById(id).orElseThrow();

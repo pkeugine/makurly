@@ -4,16 +4,13 @@ import com.makurly.core.domain.Item;
 
 public class ItemResponse {
 
-    private Long id;
-    private String name;
-    private String imageUrl;
-    private String category;
-    private Integer price;
+    private final Long id;
+    private final String name;
+    private final String imageUrl;
+    private final String category;
+    private final Integer price;
 
-    protected ItemResponse() {
-    }
-
-    public ItemResponse(Long id, String name, String imageUrl, String category, Integer price) {
+    private ItemResponse(Long id, String name, String imageUrl, String category, Integer price) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -27,11 +24,8 @@ public class ItemResponse {
             item.getName(),
             item.getImageUrl(),
             item.getCategory(),
-            item.getPrice());
-    }
-
-    public Integer getPrice() {
-        return price;
+            item.getPrice()
+        );
     }
 
     public Long getId() {
@@ -48,5 +42,9 @@ public class ItemResponse {
 
     public String getCategory() {
         return category;
+    }
+
+    public Integer getPrice() {
+        return price;
     }
 }

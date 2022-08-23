@@ -7,9 +7,9 @@ import java.util.List;
 
 public class UserInteractionResponse {
 
-    private Long id;
-    private LocalDateTime orderDate;
-    private List<UserInteractionItemResponse> interactions;
+    private final Long id;
+    private final LocalDateTime orderDate;
+    private final List<UserInteractionItemResponse> interactions;
 
     public UserInteractionResponse(Long id, LocalDateTime orderDate, List<UserInteractionItemResponse> interactions) {
         this.id = id;

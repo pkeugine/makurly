@@ -10,6 +10,13 @@ public class CartRequest {
     private Long itemId;
     private Integer quantity;
 
+    protected CartRequest() {
+    }
+
+    public Cart toEntity(Customer customer, Item item) {
+        return new Cart(customer, item, quantity);
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
@@ -20,9 +27,5 @@ public class CartRequest {
 
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public Cart toEntity(Customer customer, Item item) {
-        return new Cart(customer, item, quantity);
     }
 }

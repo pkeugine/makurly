@@ -4,10 +4,10 @@ import com.makurly.core.domain.Recommend;
 
 public class PersonalRecommendResponse {
 
-    private ItemResponse item;
-    private Integer discountRate;
+    private final ItemResponse item;
+    private final Integer discountRate;
 
-    public PersonalRecommendResponse(ItemResponse itemResponse, Integer discountRate) {
+    private PersonalRecommendResponse(ItemResponse itemResponse, Integer discountRate) {
         this.item = itemResponse;
         this.discountRate = discountRate;
     }
@@ -15,7 +15,8 @@ public class PersonalRecommendResponse {
     public static PersonalRecommendResponse of(Recommend recommend) {
         return new PersonalRecommendResponse(
             ItemResponse.of(recommend.getItem()),
-            recommend.getDiscountRate());
+            recommend.getDiscountRate()
+        );
     }
 
     public ItemResponse getItem() {
