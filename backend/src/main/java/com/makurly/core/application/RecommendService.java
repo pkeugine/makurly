@@ -42,9 +42,10 @@ public class RecommendService {
         Interaction interaction = interactionRepository.findById(recommendResponse.getInteractionId()).orElseThrow();
         List<Long> itemIds = recommendResponse.getItemIds();
         List<PersonalRecommendResponse> personalRecommendResponses = new ArrayList<>();
+        int [] rate ={10,15,20,25,30};
         itemIds.forEach(id -> {
             Item item = itemRepository.findById(id).orElseThrow();
-            Recommend recommend = new Recommend(customer, interaction, item, 10);
+            Recommend recommend = new Recommend(customer, interaction, item, rate[(int)(Math.random()*4)]);
             recommendRepository.save(recommend);
             personalRecommendResponses.add(PersonalRecommendResponse.of(recommend));
         });
