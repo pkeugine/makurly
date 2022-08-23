@@ -19,7 +19,7 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public List<ItemResponse> getAllItems() {
+    public List<ItemResponse> findAllItems() {
         List<Item> items = itemRepository.findAll();
         List<ItemResponse> itemResponses = new ArrayList<>();
         items.forEach(item -> {
