@@ -25,7 +25,7 @@ function Header(logoutFunc) {
           {isLogin() ? (
             <>
               <a href="/user-info" className="direct">
-                유저정보
+                구매내역
               </a>
               <div className="bar"></div>
               <button

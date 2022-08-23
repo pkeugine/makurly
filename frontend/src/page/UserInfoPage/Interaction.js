@@ -5,7 +5,7 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 function Interaction({ interaction }) {
   //state
 
-  const [isOpen, setIsOpen] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
   const parseDate = (dateTime) => {
     let [date, remain] = dateTime.split("T");
     let time = remain.split(".")[0];
@@ -29,15 +29,6 @@ function Interaction({ interaction }) {
             </div>
             <div className="icon-container">
               {isOpen ? (
-                <AiFillCaretDown
-                  className="button"
-                  size="30"
-                  color="rgb(95,0,128)"
-                  onClick={() => {
-                    setIsOpen(!isOpen);
-                  }}
-                ></AiFillCaretDown>
-              ) : (
                 <AiFillCaretUp
                   className="button"
                   size="30"
@@ -46,6 +37,15 @@ function Interaction({ interaction }) {
                     setIsOpen(!isOpen);
                   }}
                 ></AiFillCaretUp>
+              ) : (
+                <AiFillCaretDown
+                  className="button"
+                  size="30"
+                  color="rgb(95,0,128)"
+                  onClick={() => {
+                    setIsOpen(!isOpen);
+                  }}
+                ></AiFillCaretDown>
               )}
             </div>
           </div>

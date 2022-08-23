@@ -89,14 +89,21 @@ function RecommendPage() {
         </div>
       </div>
       <div className="button-container">
-        <button className="button2 button">주문 상세보기</button>
         <button
-          className="button1 button"
+          className="button2 button"
           onClick={() => {
             navigate("/");
           }}
         >
           쇼핑 계속하기
+        </button>
+        <button
+          className="button1 button"
+          onClick={() => {
+            navigate("/dashboard");
+          }}
+        >
+          대시보드 보기
         </button>
       </div>
     </div>
