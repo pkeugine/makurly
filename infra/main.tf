@@ -10,13 +10,13 @@ terraform {
 }
 
 provider "aws" {
-  profile = "jiho"
+  profile = "default"
   region  = "ap-northeast-2"
 }
 
 resource "aws_instance" "dev_service_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
-  instance_type          = "t2.micro"
+  instance_type          = "t2.medium"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_service_security_group.id]
   user_data              = file("setup-service.sh")
@@ -28,7 +28,7 @@ resource "aws_instance" "dev_service_server" {
 
 resource "aws_instance" "dev_api_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
-  instance_type          = "t2.micro"
+  instance_type          = "t2.medium"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_api_security_group.id, aws_security_group.dev_service_security_group.id]
   user_data              = file("setup-api.sh")
@@ -40,24 +40,10 @@ resource "aws_instance" "dev_api_server" {
 
 resource "aws_instance" "dev_mariadb_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
-  instance_type          = "t2.micro"
+  instance_type          = "t2.medium"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_mariadb_security_group.id]
   user_data              = file("setup-database.sh")
-
-  /*
-  provisioner "file" {
-    source      = "50-server.cnf"
-    destination = "~/50-server.cnf"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file("pk-key.pem")
-      host        = self.public_dns
-    }
-  }
-  */
 
   tags = {
     Name = "DevMariadbServer"
@@ -66,27 +52,25 @@ resource "aws_instance" "dev_mariadb_server" {
 
 resource "aws_instance" "dev_flask_server" {
   ami                    = "ami-0ea5eb4b05645aa8a"
-  instance_type          = "t2.micro"
+  instance_type          = "t2.medium"
   key_name               = aws_key_pair.pk_key_pair.key_name
   vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_flask_security_group.id]
   user_data              = file("setup-flask.sh")
 
-  /*
-  provisioner "file" {
-    source      = "../brain/"
-    destination = "~/50-server.cnf"
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file("pk-key.pem")
-      host        = self.public_dns
-    }
-  }
-  */
-
   tags = {
     Name = "DevFlaskServer"
+  }
+}
+
+resource "aws_instance" "dev_jupyter_server" {
+  ami                    = "ami-0ea5eb4b05645aa8a"
+  instance_type          = "t2.medium"
+  key_name               = aws_key_pair.pk_key_pair.key_name
+  vpc_security_group_ids = [aws_security_group.dev_security_group.id, aws_security_group.dev_service_security_group.id, aws_security_group.dev_jupyter_security_group.id]
+  user_data              = file("setup-flask.sh")
+
+  tags = {
+    Name = "DevJupyterServer"
   }
 }
 
@@ -108,6 +92,11 @@ output "dev_mariadb_server_public_ip" {
 output "dev_flask_server_public_ip" {
   description = "Public IP address of DevFlaskServer"
   value       = aws_instance.dev_flask_server.public_ip
+}
+
+output "dev_jupyter_server_public_ip" {
+  description = "Public IP address of DevJupyterServer"
+  value       = aws_instance.dev_jupyter_server.public_ip
 }
 
 resource "aws_security_group" "dev_security_group" {
@@ -211,6 +200,22 @@ resource "aws_security_group" "dev_flask_security_group" {
       security_groups  = []
       self             = false
       to_port          = 5000
+    }
+  ]
+}
+
+resource "aws_security_group" "dev_jupyter_security_group" {
+  ingress = [
+    {
+      cidr_blocks      = ["0.0.0.0/0", ]
+      description      = "jupyter tcp connection"
+      from_port        = 8888
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      protocol         = "tcp"
+      security_groups  = []
+      self             = false
+      to_port          = 8888
     }
   ]
 }
