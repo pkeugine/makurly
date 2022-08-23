@@ -11,7 +11,11 @@ import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.exception.UserNotExistException;
 import com.makurly.core.ui.dto.InteractionRequest;
 import com.makurly.core.ui.dto.InteractionResponse;
+import com.makurly.core.ui.dto.UserInteractionItemResponse;
+import com.makurly.core.ui.dto.UserInteractionResponse;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +56,14 @@ public class InteractionService {
             interactionItemRepository.save(interactionItem);
         });
         return new InteractionResponse(interaction.getId());
+    }
+    public List<UserInteractionResponse> getUserInteractions(Long id){
+        Customer customer = customerRepository.findById(id).orElseThrow();
+        List<Interaction> interactions = interactionRepository.findAllByCustomer(customer);
+        List<UserInteractionResponse> userInteractionResponses = new ArrayList();
+        interactions.forEach(interaction -> {
+            userInteractionResponses.add(UserInteractionResponse.of(interaction));
+        });
+        return userInteractionResponses;
     }
 }
