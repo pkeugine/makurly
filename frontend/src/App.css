@@ -76,7 +76,3 @@ button {
     transform: rotate(360deg);
   }
 }
-@font-face {
-  font-family: "Spoqa Han Sans";
-  src: url("./asset/Spoqa Han Sans Regular.ttf");
-}
