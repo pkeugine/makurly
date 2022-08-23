@@ -27,7 +27,7 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<CartResponse> addCart(@RequestBody CartRequest cartRequest) {
+    public ResponseEntity<CartResponse> createCart(@RequestBody CartRequest cartRequest) {
         CartResponse cartResponse = cartService.addCart(cartRequest);
         URI uri = URI.create(String.format("/%d", cartResponse.getId()));
         return ResponseEntity.created(uri).body(cartResponse);

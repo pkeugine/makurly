@@ -4,8 +4,8 @@ import com.makurly.core.application.InteractionService;
 import com.makurly.core.ui.dto.InteractionRequest;
 import com.makurly.core.ui.dto.InteractionResponse;
 import com.makurly.core.ui.dto.UserInteractionResponse;
+import java.net.URI;
 import java.util.List;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,20 +25,15 @@ public class InteractionController {
     }
 
     @PostMapping
-    public ResponseEntity<InteractionResponse> makeInteraction(@RequestBody InteractionRequest interactionRequest) {
-
-        InteractionResponse body = interactionService.makeInteraction(interactionRequest);
-        return ResponseEntity
-            .status(HttpStatus.CREATED)
-            .body(body);
+    public ResponseEntity<InteractionResponse> createInteraction(@RequestBody InteractionRequest interactionRequest) {
+        InteractionResponse interactionResponse = interactionService.createInteraction(interactionRequest);
+        URI uri = URI.create(String.format("%d", interactionResponse.getId()));
+        return ResponseEntity.created(uri).body(interactionResponse);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<UserInteractionResponse>> getUserInteractions(@PathVariable Long id){
-        List<UserInteractionResponse> body = interactionService.getUserInteractions(id);
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(body);
+    public ResponseEntity<List<UserInteractionResponse>> findInteractionById(@PathVariable Long id) {
+        List<UserInteractionResponse> userInteractionResponses = interactionService.getUserInteractions(id);
+        return ResponseEntity.ok(userInteractionResponses);
     }
-
 }

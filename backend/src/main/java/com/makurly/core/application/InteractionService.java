@@ -40,7 +40,7 @@ public class InteractionService {
         this.interactionItemRepository = interactionItemRepository;
     }
 
-    public InteractionResponse makeInteraction(InteractionRequest interactionRequest) {
+    public InteractionResponse createInteraction(InteractionRequest interactionRequest) {
         Customer customer = customerRepository
             .findById(interactionRequest.getCustomerId())
             .orElseThrow(UserNotExistException::new);
