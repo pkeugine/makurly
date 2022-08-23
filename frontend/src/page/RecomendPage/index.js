@@ -44,7 +44,7 @@ function RecommendPage() {
           size="50"
           color="rgb(95, 0, 128)"
         ></AiOutlineCheckCircle>
-        <div className="a">이지호님의 주문이 완료되었습니다.</div>
+        <div className="a">주문이 완료되었습니다.</div>
         <div className="b">내일 아침에 만나요!</div>
       </div>
       <div className="order-price">
