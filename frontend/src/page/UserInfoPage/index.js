@@ -14,6 +14,7 @@ function UserInfoPage() {
       setInteractions(res.data);
       // console.log(interactions);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
