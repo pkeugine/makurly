@@ -10,8 +10,9 @@ function MainPage() {
   const [modalVisible, setModalVisible] = useState(false);
   const [items, setItems] = useState([]);
   const [clickItem, setClickItem] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState("샐러드·닭가슴살");
+  const [selectedCategory, setSelectedCategory] = useState("전체보기");
   const categories = [
+    "전체보기",
     "샐러드·닭가슴살",
     "도시락·밥류",
     "떡볶이·튀김·순대",
@@ -54,7 +55,6 @@ function MainPage() {
           console.log(err);
         });
     } else {
-      console.log(API_SERVER + `/items/filter?category=${selectedCategory}`);
       axios
         .get(API_SERVER + `/items/filter?category=${selectedCategory}`)
         .then((res) => {
