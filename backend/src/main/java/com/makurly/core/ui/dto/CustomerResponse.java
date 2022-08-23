@@ -7,20 +7,19 @@ import java.time.LocalDate;
 public class CustomerResponse {
 
     private Long id;
-
     private String name;
-
     private Gender gender;
-
     private LocalDate birthDate;
-
     private String device;
-
     private String mainAddress;
-
     private String detailedAddress;
 
-    public CustomerResponse(Long id, String name, Gender gender, LocalDate birthDate, String device, String mainAddress,
+    public CustomerResponse(Long id,
+                            String name,
+                            Gender gender,
+                            LocalDate birthDate,
+                            String device,
+                            String mainAddress,
                             String detailedAddress) {
         this.id = id;
         this.name = name;
@@ -29,6 +28,18 @@ public class CustomerResponse {
         this.device = device;
         this.mainAddress = mainAddress;
         this.detailedAddress = detailedAddress;
+    }
+
+    public static CustomerResponse of(Customer customer) {
+        return new CustomerResponse(
+            customer.getId(),
+            customer.getName(),
+            customer.getGender(),
+            customer.getBirthDate(),
+            customer.getDevice(),
+            customer.getMainAddress(),
+            customer.getDetailedAddress()
+        );
     }
 
     public Long getId() {
@@ -57,17 +68,5 @@ public class CustomerResponse {
 
     public String getDetailedAddress() {
         return detailedAddress;
-    }
-
-    public static CustomerResponse of(Customer customer) {
-        return new CustomerResponse(
-            customer.getId(),
-            customer.getName(),
-            customer.getGender(),
-            customer.getBirthDate(),
-            customer.getDevice(),
-            customer.getMainAddress(),
-            customer.getDetailedAddress()
-        );
     }
 }

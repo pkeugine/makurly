@@ -8,12 +8,7 @@ public class ItemResponse {
     private String name;
     private String imageUrl;
     private String category;
-
     private Integer price;
-
-    public Integer getPrice() {
-        return price;
-    }
 
     protected ItemResponse() {
     }
@@ -24,6 +19,19 @@ public class ItemResponse {
         this.imageUrl = imageUrl;
         this.category = category;
         this.price = price;
+    }
+
+    public static ItemResponse of(Item item) {
+        return new ItemResponse(
+            item.getId(),
+            item.getName(),
+            item.getImageUrl(),
+            item.getCategory(),
+            item.getPrice());
+    }
+
+    public Integer getPrice() {
+        return price;
     }
 
     public Long getId() {
@@ -40,14 +48,5 @@ public class ItemResponse {
 
     public String getCategory() {
         return category;
-    }
-
-    public static ItemResponse of(Item item) {
-        return new ItemResponse(
-            item.getId(),
-            item.getName(),
-            item.getImageUrl(),
-            item.getCategory(),
-            item.getPrice());
     }
 }

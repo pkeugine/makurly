@@ -5,7 +5,6 @@ import com.makurly.core.domain.Recommend;
 public class PersonalRecommendResponse {
 
     private ItemResponse item;
-
     private Integer discountRate;
 
     public PersonalRecommendResponse(ItemResponse itemResponse, Integer discountRate) {

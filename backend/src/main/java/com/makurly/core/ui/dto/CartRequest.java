@@ -1,6 +1,5 @@
 package com.makurly.core.ui.dto;
 
-
 import com.makurly.core.domain.Cart;
 import com.makurly.core.domain.Customer;
 import com.makurly.core.domain.Item;
@@ -8,9 +7,7 @@ import com.makurly.core.domain.Item;
 public class CartRequest {
 
     private Long customerId;
-
     private Long itemId;
-
     private Integer quantity;
 
     public Long getCustomerId() {
