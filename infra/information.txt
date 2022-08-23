@@ -1,7 +1,0 @@
-PK_INFRA_PATH=/Users/pkeugine/Projects/kurly/infra
-PK_BACKEND_PATH=/Users/pkeugine/Projects/kurly/backend
-PK_FRONTEND_PATH=/Users/pkeugine/Projects/kurly/frontend
-PK_SERVICE_DOMAIN_NAME=gurumi.kro.kr
-PK_API_DOMAIN_NAME=gurumi-api.kro.kr
-PK_SERVICE_PUBLIC_IP=3.35.4.140
-PK_API_PUBLIC_IP=13.209.97.32
