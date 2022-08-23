@@ -4,8 +4,8 @@ import com.makurly.core.application.CartService;
 import com.makurly.core.ui.dto.CartDeleteRequest;
 import com.makurly.core.ui.dto.CartRequest;
 import com.makurly.core.ui.dto.CartResponse;
+import java.net.URI;
 import java.util.List;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,43 +28,32 @@ public class CartController {
 
     @PostMapping("/add")
     public ResponseEntity<CartResponse> addCart(@RequestBody CartRequest cartRequest) {
-        CartResponse responseBody = cartService.addCart(cartRequest);
-        return ResponseEntity
-            .status(HttpStatus.CREATED)
-            .body(responseBody);
+        CartResponse cartResponse = cartService.addCart(cartRequest);
+        URI uri = URI.create(String.format("/%d", cartResponse.getId()));
+        return ResponseEntity.created(uri).body(cartResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CartResponse>> findCartsByCustomerId(@RequestParam(name = "id") Long customerId) {
+        List<CartResponse> cartResponses = cartService.findCartsByCustomerId(customerId);
+        return ResponseEntity.ok(cartResponses);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CartResponse> findCartById(@PathVariable Long id) {
+        CartResponse cartResponse = cartService.findCartById(id);
+        return ResponseEntity.ok(cartResponse);
     }
 
     @PostMapping("/delete")
     public ResponseEntity<Void> deleteCarts(@RequestBody CartDeleteRequest cartDeleteRequest) {
         cartService.deleteCarts(cartDeleteRequest);
-        return ResponseEntity
-            .status(HttpStatus.NO_CONTENT)
-            .build();
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteCart(@PathVariable Long id) {
         cartService.deleteCart(id);
-        return ResponseEntity
-            .status(HttpStatus.NO_CONTENT)
-            .build();
+        return ResponseEntity.noContent().build();
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<CartResponse> findCartById(@PathVariable(name = "id") Long cartId) {
-        CartResponse responseBody = cartService.findCartById(cartId);
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(responseBody);
-    }
-
-    @GetMapping()
-    public ResponseEntity<List<CartResponse>> findCartsByCustomerId(@RequestParam(name = "id") Long customerId) {
-        List<CartResponse> responseBody = cartService.findCartsByCustomerId(customerId);
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(responseBody);
-    }
-
-
 }
