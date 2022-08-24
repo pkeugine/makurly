@@ -5,7 +5,6 @@ import com.makurly.core.application.WebClientService;
 import com.makurly.core.application.dto.RecommendResponse;
 import com.makurly.core.ui.dto.PersonalRecommendResponse;
 import java.util.List;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecommendController {
 
     private final WebClientService webClientService;
-
     private final RecommendService recommendService;
 
     public RecommendController(WebClientService webClientService, RecommendService recommendService) {
@@ -27,10 +25,8 @@ public class RecommendController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<PersonalRecommendResponse>> recommend(@PathVariable Long id) {
-        RecommendResponse recommendResponse = webClientService.getItemsFromInteractionEx(id);
-        List<PersonalRecommendResponse> body = recommendService.findItemsByIds(recommendResponse);
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(body);
+        RecommendResponse recommendResponse = webClientService.receiveItemsFromInteractionEx(id);
+        List<PersonalRecommendResponse> personalRecommendResponses = recommendService.findItemsByIds(recommendResponse);
+        return ResponseEntity.ok(personalRecommendResponses);
     }
 }

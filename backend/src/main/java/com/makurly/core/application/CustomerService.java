@@ -19,26 +19,37 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public CustomerResponse createCustomer(CustomerRequest customerRequest) {
-        Customer newCustomer = customerRequest.toEntity();
-        if (customerRepository.existsByName(customerRequest.getName())) {
+    public CustomerResponse create(CustomerRequest customerRequest) {
+        Customer customer = customerRequest.toEntity();
+        if (alreadyExists(customer)) {
             throw new UserAlreadyExistException();
         }
-        customerRepository.save(newCustomer);
-        return CustomerResponse.of(newCustomer);
+        customerRepository.save(customer);
+        return CustomerResponse.of(customer);
+    }
+
+    private boolean alreadyExists(Customer customer) {
+        return customerRepository.existsByName(customer.getName());
     }
 
     public CustomerResponse signIn(String customerName) {
-        Customer existedCustomer = customerRepository.
-            findByName(customerName)
-            .orElseThrow(UserNotExistException::new);
+        Customer existedCustomer = findByName(customerName);
         return CustomerResponse.of(existedCustomer);
     }
 
-    public CustomerResponse getCustomerById(Long id) {
-        Customer customer = customerRepository
-            .findById(id)
+    private Customer findByName(String name) {
+        return customerRepository.findByName(name)
             .orElseThrow(UserNotExistException::new);
+    }
+
+    @Transactional(readOnly = true)
+    public CustomerResponse findById(Long id) {
+        Customer customer = findCustomerById(id);
         return CustomerResponse.of(customer);
+    }
+
+    private Customer findCustomerById(Long id) {
+        return customerRepository.findById(id)
+            .orElseThrow(UserNotExistException::new);
     }
 }

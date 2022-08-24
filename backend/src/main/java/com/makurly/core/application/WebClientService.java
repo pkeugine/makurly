@@ -23,46 +23,48 @@ public class WebClientService {
         this.webClient = webClient;
     }
 
-    public RecommendResponse getItemsFromInteractionEx(Long id) {
-        Interaction interaction = interactionRepository.findById(id).orElseThrow();
-        Long customerId = interaction.getCustomer().getId();
-        List<InteractionItem> interactions = interaction.getInteractionItems();
-        List<Long> itemIds = new ArrayList<>();
-        interactions.forEach(interactionItem -> {
-            for (int i = 0; i < interactionItem.getQuantity(); i++) {
-                itemIds.add(interactionItem.getItem().getId());
-            }
-        });
-        RecommendRequest body = new RecommendRequest(customerId, itemIds, id);
-        RecommendResponse recommendResponse = webClient
-            .post()
-            .uri("/ex-recommend")
-            .bodyValue(body)
-            .retrieve()
-            .bodyToMono(RecommendResponse.class)
-            .block();
-
-        return recommendResponse;
+    public RecommendResponse receiveItemsFromInteractionEx(Long id) {
+        Interaction interaction = findInteractionById(id);
+        Long customerId = findCustomerId(interaction);
+        List<InteractionItem> interactionItems = interaction.getInteractionItems();
+        List<Long> itemIds = findInteractionItemIds(interactionItems);
+        RecommendRequest recommendRequest = new RecommendRequest(customerId, itemIds, id);
+        return requestRecommendation(recommendRequest);
     }
-    public RecommendResponse getItemsFromInteractionIm(Long id) {
-        Interaction interaction = interactionRepository.findById(id).orElseThrow();
-        Long customerId = interaction.getCustomer().getId();
-        List<InteractionItem> interactions = interaction.getInteractionItems();
+
+    private Interaction findInteractionById(Long id) {
+        return interactionRepository.findById(id)
+            .orElseThrow();
+    }
+
+    private Long findCustomerId(Interaction interaction) {
+        return interaction
+            .getCustomer()
+            .getId();
+    }
+
+    private List<Long> findInteractionItemIds(List<InteractionItem> interactionItems) {
         List<Long> itemIds = new ArrayList<>();
-        interactions.forEach(interactionItem -> {
-            for (int i = 0; i < interactionItem.getQuantity(); i++) {
-                itemIds.add(interactionItem.getItem().getId());
-            }
-        });
-        RecommendRequest body = new RecommendRequest(customerId, itemIds, id);
-        RecommendResponse recommendResponse = webClient
+        for (InteractionItem interactionItem : interactionItems) {
+            addItemIds(itemIds, interactionItem);
+        }
+        return itemIds;
+    }
+
+    private void addItemIds(List<Long> itemIds, InteractionItem interactionItem) {
+        Long itemId = interactionItem.getItem().getId();
+        for (int i = 0; i < interactionItem.getQuantity(); i++) {
+            itemIds.add(itemId);
+        }
+    }
+
+    private RecommendResponse requestRecommendation(RecommendRequest body) {
+        return webClient
             .post()
             .uri("/ex-recommend")
             .bodyValue(body)
             .retrieve()
             .bodyToMono(RecommendResponse.class)
             .block();
-
-        return recommendResponse;
     }
 }

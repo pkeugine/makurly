@@ -7,10 +7,8 @@ public class RecommendResponse {
 
     @JsonProperty("items")
     private List<Long> itemIds;
-
     @JsonProperty("user_idx")
     private Long customerId;
-
     @JsonProperty("interaction_idx")
     private Long interactionId;
 

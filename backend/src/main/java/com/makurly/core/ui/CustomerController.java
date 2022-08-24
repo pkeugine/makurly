@@ -24,7 +24,7 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<CustomerResponse> createCustomer(@RequestBody CustomerRequest customerRequest) {
-        CustomerResponse customerResponse = customerService.createCustomer(customerRequest);
+        CustomerResponse customerResponse = customerService.create(customerRequest);
         URI uri = URI.create(String.format("/%d", customerResponse.getId()));
         return ResponseEntity.created(uri).body(customerResponse);
     }
@@ -37,7 +37,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CustomerResponse> findCustomerById(@PathVariable Long id) {
-        CustomerResponse customerResponse = customerService.getCustomerById(id);
+        CustomerResponse customerResponse = customerService.findById(id);
         return ResponseEntity.ok(customerResponse);
     }
 }

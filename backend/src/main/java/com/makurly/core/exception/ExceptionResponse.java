@@ -2,7 +2,7 @@ package com.makurly.core.exception;
 
 public class ExceptionResponse {
 
-    String message;
+    private final String message;
 
     public ExceptionResponse(String message) {
         this.message = message;

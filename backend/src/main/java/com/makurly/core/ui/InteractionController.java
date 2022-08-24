@@ -26,7 +26,7 @@ public class InteractionController {
 
     @PostMapping
     public ResponseEntity<InteractionResponse> createInteraction(@RequestBody InteractionRequest interactionRequest) {
-        InteractionResponse interactionResponse = interactionService.createInteraction(interactionRequest);
+        InteractionResponse interactionResponse = interactionService.mapInteractionItem(interactionRequest);
         URI uri = URI.create(String.format("%d", interactionResponse.getId()));
         return ResponseEntity.created(uri).body(interactionResponse);
     }

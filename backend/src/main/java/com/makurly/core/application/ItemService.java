@@ -4,8 +4,8 @@ package com.makurly.core.application;
 import com.makurly.core.domain.Item;
 import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.ui.dto.ItemResponse;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,29 +19,27 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<ItemResponse> findAllItems() {
         List<Item> items = itemRepository.findAll();
-        List<ItemResponse> itemResponses = new ArrayList<>();
-        items.forEach(item -> {
-            itemResponses.add(ItemResponse.of(item));
-        });
-        return itemResponses;
+        return createItemResponses(items);
     }
 
-    public List<ItemResponse> findItemsByCategory(String category) {
-        List<Item> items = itemRepository.findAllByCategory(category);
-        List<ItemResponse> itemResponses = new ArrayList<>();
-        items.forEach(item -> {
-            itemResponses.add(ItemResponse.of(item));
-        });
-        return itemResponses;
+    private List<ItemResponse> createItemResponses(List<Item> items) {
+        return items.stream()
+            .map(ItemResponse::of)
+            .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public ItemResponse findItemById(Long id) {
         Item item = itemRepository.findById(id).orElseThrow();
-        ItemResponse itemResponse = ItemResponse.of(item);
-        return itemResponse;
+        return ItemResponse.of(item);
     }
 
-
+    @Transactional(readOnly = true)
+    public List<ItemResponse> findItemsByCategory(String category) {
+        List<Item> items = itemRepository.findAllByCategory(category);
+        return createItemResponses(items);
+    }
 }

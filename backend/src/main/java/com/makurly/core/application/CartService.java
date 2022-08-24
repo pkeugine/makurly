@@ -9,8 +9,8 @@ import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.ui.dto.CartDeleteRequest;
 import com.makurly.core.ui.dto.CartRequest;
 import com.makurly.core.ui.dto.CartResponse;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,46 +18,54 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CartService {
 
+    private final CustomerRepository customerRepository;
+    private final ItemRepository itemRepository;
     private final CartRepository cartRepository;
 
-    private final CustomerRepository customerRepository;
-
-    private final ItemRepository itemRepository;
-
-    public CartService(CartRepository cartRepository, CustomerRepository customerRepository,
-                       ItemRepository itemRepository) {
-        this.cartRepository = cartRepository;
+    public CartService(CustomerRepository customerRepository,
+                       ItemRepository itemRepository,
+                       CartRepository cartRepository) {
         this.customerRepository = customerRepository;
         this.itemRepository = itemRepository;
+        this.cartRepository = cartRepository;
     }
 
     public CartResponse addCart(CartRequest cartRequest) {
-        Customer customer = customerRepository
-            .findById(cartRequest.getCustomerId())
-            .orElseThrow();
-        Item item = itemRepository
-            .findById(cartRequest.getItemId())
-            .orElseThrow();
+        Customer customer = findCustomer(cartRequest);
+        Item item = findItem(cartRequest);
         Cart cart = cartRequest.toEntity(customer, item);
         cartRepository.save(cart);
         return CartResponse.of(cart);
     }
 
+    private Customer findCustomer(CartRequest cartRequest) {
+        return customerRepository.findById(cartRequest.getItemId())
+            .orElseThrow();
+    }
+
+    private Item findItem(CartRequest cartRequest) {
+        return itemRepository.findById(cartRequest.getItemId())
+            .orElseThrow();
+    }
+
+    @Transactional(readOnly = true)
     public CartResponse findCartById(Long id) {
         Cart cart = cartRepository.findById(id).orElseThrow();
         return CartResponse.of(cart);
     }
 
+    @Transactional(readOnly = true)
     public List<CartResponse> findCartsByCustomerId(Long customerId) {
-        Customer customer = customerRepository
-            .findById(customerId)
-            .orElseThrow();
+        Customer customer = findCustomerById(customerId);
         List<Cart> carts = cartRepository.findCartsByCustomer(customer);
-        List<CartResponse> cartResponses = new ArrayList<>();
-        carts.forEach(cart -> {
-            cartResponses.add(CartResponse.of(cart));
-        });
-        return cartResponses;
+        return carts.stream()
+            .map(CartResponse::of)
+            .collect(Collectors.toList());
+    }
+
+    private Customer findCustomerById(Long customerId) {
+        return customerRepository.findById(customerId)
+            .orElseThrow();
     }
 
     public void deleteCart(Long id) {
@@ -65,8 +73,7 @@ public class CartService {
     }
 
     public void deleteCarts(CartDeleteRequest cartDeleteRequest) {
-        cartDeleteRequest.getCartIds().forEach(id -> {
-            cartRepository.deleteById(id);
-        });
+        List<Long> cartIds = cartDeleteRequest.getCartIds();
+        cartRepository.deleteAllById(cartIds);
     }
 }
