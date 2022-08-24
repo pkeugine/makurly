@@ -12,13 +12,22 @@ function UserInfoPage() {
     axios.get(API_SERVER + `/interactions/${userId}`).then((res) => {
       console.log(res.data);
       setInteractions(res.data);
-      // console.log(interactions);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="userinfo-page-container">
+      <div
+        style={{
+          fontWeight: "bold",
+          fontSize: "30px",
+          color: "rgb(95,0,128)",
+          padding: "20px",
+        }}
+      >
+        구매 내역
+      </div>
       {interactions.map((interaction) => (
         <Interaction interaction={interaction}></Interaction>
       ))}
