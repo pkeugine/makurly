@@ -8,7 +8,9 @@ const RecommendCard = ({ recommend }) => {
     setIsFlipped(!isFlipped);
   };
   const discountPrice = () => {
-    return recommend.item.price * ((100 - recommend.discountRate) / 100);
+    return parseInt(
+      recommend.item.price * ((100 - recommend.discountRate) / 100)
+    );
   };
   const changePriceFormat = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
