@@ -1,8 +1,8 @@
 .userinfo-page-container {
   display: flex;
   align-items: center;
-  justify-content: center;
   min-width: 1050px;
+  min-height: 1000px;
   flex-direction: column;
 }
 .userinfo-page-container .interactions-container {

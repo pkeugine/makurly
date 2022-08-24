@@ -1,6 +1,4 @@
 .Footer {
-  position: absolute;
-  bottom: 0px;
   height: 200px;
   background-color: rgb(217, 217, 217);
   display: flex;
