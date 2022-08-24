@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./style.css";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
@@ -7,12 +7,11 @@ function Interaction({ interaction }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const parseDate = (dateTime) => {
-    let [date, remain] = dateTime.split("T");
-    let time = remain.split(".")[0];
+    let date = dateTime.split("T")[0];
     return date;
   };
   const parseTime = (dateTime) => {
-    let [date, remain] = dateTime.split("T");
+    let remain = dateTime.split("T")[1];
     let time = remain.split(".")[0];
     return time;
   };
@@ -56,6 +55,7 @@ function Interaction({ interaction }) {
                   <div className="img-container">
                     <img
                       className="image"
+                      alt="img"
                       src={interactionItem.item.imageUrl}
                     ></img>
                   </div>

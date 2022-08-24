@@ -1,4 +1,6 @@
 .Footer {
+  position: absolute;
+  bottom: 0px;
   height: 200px;
   background-color: rgb(217, 217, 217);
   display: flex;
@@ -6,5 +8,5 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-width: 1050px;
+  min-width: 100%;
 }
