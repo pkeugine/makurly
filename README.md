@@ -3,7 +3,7 @@
 KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 
 👉 [저희 서비스를 이용해보세요!](https://makurly.kro.kr)</br></br>
-👉 [저희가 모델을 학습시키는 환경에 들어가보세요! (비밀번호가 설정되어 있습니다)](https://makurly.kro.kr)</br></br>
+👉 [저희가 모델을 학습시키는 환경에 들어가보세요! (비밀번호가 설정되어 있습니다)](http://http://makurly-notebook.kro.kr:8888/)</br></br>
 👉 [저희가 만든 api 의 명세서를 확인해보세요!](https://makurly-api.kro.kr/swagger-ui/)
 
 <p align="center">
