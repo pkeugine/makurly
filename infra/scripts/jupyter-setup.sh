@@ -10,6 +10,8 @@ pip install -r requirements.txt
 pip install scikit-surprise
 jupyter notebook --generate-config
 
+# THIS IS NOT THE CURRENT PASSWORD
+# WON'T WORK EVEN IF YOU TRY 😛
 # ipython
 # from notebook.auth import passwd; passwd()
 # makurlypassword

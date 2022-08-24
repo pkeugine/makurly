@@ -2,15 +2,20 @@
 
 KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 
-👉 [저희 서비스를 이용해보세요!](https://makurly.kro.kr)</br>
+👉 [저희 서비스를 이용해보세요!](https://makurly.kro.kr)</br></br>
+👉 [저희가 모델을 학습시키는 환경에 들어가보세요! (비밀번호가 설정되어 있습니다)](https://makurly.kro.kr)</br></br>
+👉 [저희가 만든 api 의 명세서를 확인해보세요!](https://makurly-api.kro.kr/swagger-ui/)
 
 <p align="center">
     <img src="images/recommend.png" width="500" />
 </p>
 
 ## 설명
-
 사용자가 makurly에서 구매한 제품을 바탕으로 새로운 제품을 추천합니다.</br>
+<p align="center">
+    <img src="images/talk.png" width="500" /></br>
+    여러분은 오늘 어떤 추천을 받을까요? 🤩
+</p>
 
 ## 서비스 사용 방법
 **서비스에 접속하신 후, 최상단에 있는 배너의 설명대로 진행하셔도 괜찮습니다.**</br>
@@ -61,27 +66,29 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 **따라서 해당 레포지토리를 clone 한 뒤 실행해도 모든 애플리케이션이 돌아가지는 않습니다.**
 
 ### brain
+* 저희 모델이 돌아가고 있는 서버와 관련된 디렉토리 입니다.
+* 로컬 환경에서 app.py 를 실행하기 위해서는 python 3.9 버전과 infra 디렉토리에 있는 requirements.txt 관련 패키지가 필요합니다.
 <p align="center">
     <img src="images/notebook.png" width="500" /></br>
     저 높은 구름 위에서 학습하는 우리의 소중한 모델들
 </p>
 
-* 저희 모델이 돌아가고 있는 서버와 관련된 디렉토리 입니다.
-* 로컬 환경에서 app.py 를 실행하기 위해서는 python 3.9 버전과 infra 디렉토리에 있는 requirements.txt 관련 패키지가 필요합니다.
-
 ### frontend
+* 서비스의 프론트엔드와 관련된 디렉토리입니다. 로컬 환경에서 실행 가능합니다.
 <p align="center">
     <img src="images/frontend.gif" width="500" /></br>
     추천 제품을 하나씩 뒤집어보는 재미
 </p>
 
-* 서비스의 프론트엔드와 관련된 디렉토리입니다. 로컬 환경에서 실행 가능합니다.
-
 ### backend
-
 * 서비스의 백엔드와 관련된 디렉토리입니다. 로컬 환경에서 실행 가능합니다.
+<p align="center">
+    <img src="images/backend.png" width="500" /></br>
+    눈에는 안 보이지만 열심히 api 를 만든 개발자들
+</p>
 
 ### infra
+* 서비스의 DB, CORS 처리, AWS 리소스 관리 등 환경 설정 등 인프라와 관련된 디렉토리입니다.
 <p align="center">
     <img src="images/infrastructure.jpg" width="500" /></br>
     이건 인프라 구조입니다
@@ -90,4 +97,11 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
     <img src="images/erd.png" width="500" /></br>
     그리고 이건 우리 서비스의 ERD 입니다
 </p>
-* 서비스의 DB, CORS 처리, AWS 리소스 관리 등 환경 설정 등 인프라와 관련된 디렉토리입니다.
+
+# 팀원
+**👍자랑스러운 맠컬리 팀원들입니다👍**
+
+* [😝 박유진 (팀장, 백엔드 및 인프라)](https://github.com/pkeugine)
+* [😎 송지은 (디자인 및 기획)](https://blog.naver.com/hurshey12)
+* [🥳 이지호 (백엔드(rest api) 및 프론트엔드)](https://github.com/jih0lee)
+* [🤩 이은표 (데이터 시뮬레이션, 모델링 및 실험)](https://groovy-llama-99e.notion.site/1-3f43f606932a49b1bafe2a8e1f6c3e28)
