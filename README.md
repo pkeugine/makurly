@@ -4,11 +4,11 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 
 👉 [저희 서비스를 이용해보세요!](https://makurly.kro.kr)</br>
 
-## 설명
-
 <p align="center">
-    <img src="../images/recommend.png">
+    <img src="images/recommend.png" width="500" />
 </p>
+
+## 설명
 
 사용자가 makurly에서 구매한 제품을 바탕으로 새로운 제품을 추천합니다.</br>
 
