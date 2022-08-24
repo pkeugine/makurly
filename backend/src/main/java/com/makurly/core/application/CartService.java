@@ -39,7 +39,7 @@ public class CartService {
     }
 
     private Customer findCustomer(CartRequest cartRequest) {
-        return customerRepository.findById(cartRequest.getItemId())
+        return customerRepository.findById(cartRequest.getCustomerId())
             .orElseThrow();
     }
 
