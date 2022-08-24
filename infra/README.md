@@ -4,22 +4,20 @@
     - created scripts/information.sh
 
 - [x] 백엔드(api) 서버 도메인 확보
-- [ ] make file for servers to run immediately
-    - [ ] apt update 즉시 실행
-    - [ ] 필요한 패키지 다운로드 즉시 실행
-    - [ ] mkdir 즉시 실행
-    - [ ] 인스턴스 shell ui 변경 (인스턴스 용도 및 public ip 보이면 좋을듯)
+- [x] make file for servers to run immediately
+    - [x] apt update 즉시 실행
+    - [x] 필요한 패키지 다운로드 즉시 실행
+    - [x] mkdir 즉시 실행
+    - [x] 인스턴스 shell ui 변경 (인스턴스 용도 및 public ip 보이면 좋을듯)
 
-- [ ] database 생성
+- [x] database 생성
     - [x] use mariadb
     - [x] fill in data
-    - [ ] switch to RDS if I have the time
-    - [ ] automate the process
-- [ ] brain 서버 생성
+- [x] brain 서버 생성
     - [x] initiate flask project
     - [x] use models and run the server
-    - [ ] flask server should install python3 and start venv
-    - [ ] check how to build flask production server
+    - [x] flask server should install python3 and start venv
+    - [x] check how to build flask production server
     - [x] add flask instance
         - [ ] automate the process
 
@@ -36,8 +34,8 @@
 - [x] backend domain name (makurly-api.kro.kr)
 
 ### setup.sh : initial setup before doing anything
-- [ ] install aws cli
-- [ ] install terraform
+- [x] install aws cli
+- [x] install terraform
 
 - [x] pwd and save the directory path >> information.txt
     - [x] export it
@@ -71,7 +69,7 @@
 - [ ] backend instance 로 jar 파일 전송
 #### frontend 배포
 - [x] yarn build
-- [ ] frontend instance 로 build 디렉토리 전송
+- [x] frontend instance 로 build 디렉토리 전송
 
 ### destory.sh : destroy process
 리소스를 삭제하는 과정. Cloud 서비스를 사용하지 않아 비용을 내기 싫거나 프로젝트를 그만 할 때 사용.
@@ -79,7 +77,7 @@
 - [x] delete pem key
 
 ### what this does
-- [ ] install minimum required packages in instances
+- [x] install minimum required packages in instances
 - [x] automatic (default) CORS setup
 - [x] HSTS
 - [x] alias ssh commands so user doesn't have to keep track of public ip
