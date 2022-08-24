@@ -53,7 +53,7 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 </p>
 <p align="center">
     <img src="images/dashboard.png" width="500" /></br>
-    다양한 모델을 앙상블한 우리의 추천 모델 확인하기
+    우리 추천 모델의 성능 비교 대시보드 확인하기
 </p>
 
 ## 추가 설명
@@ -61,11 +61,19 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 **따라서 해당 레포지토리를 clone 한 뒤 실행해도 모든 애플리케이션이 돌아가지는 않습니다.**
 
 ### brain
+<p align="center">
+    <img src="images/notebook.png" width="500" /></br>
+    저 높은 구름 위에서 학습하는 우리의 소중한 모델들
+</p>
 
 * 저희 모델이 돌아가고 있는 서버와 관련된 디렉토리 입니다.
 * 로컬 환경에서 app.py 를 실행하기 위해서는 python 3.9 버전과 infra 디렉토리에 있는 requirements.txt 관련 패키지가 필요합니다.
 
 ### frontend
+<p align="center">
+    <img src="images/frontend.gif" width="500" /></br>
+    추천 제품을 하나씩 뒤집어보는 재미
+</p>
 
 * 서비스의 프론트엔드와 관련된 디렉토리입니다. 로컬 환경에서 실행 가능합니다.
 
@@ -74,5 +82,12 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 * 서비스의 백엔드와 관련된 디렉토리입니다. 로컬 환경에서 실행 가능합니다.
 
 ### infra
-
+<p align="center">
+    <img src="images/infrastructure.png" width="500" /></br>
+    이건 인프라 구조입니다
+</p>
+<p align="center">
+    <img src="images/erd.png" width="500" /></br>
+    그리고 이건 우리 서비스의 ERD 입니다
+</p>
 * 서비스의 DB, CORS 처리, AWS 리소스 관리 등 환경 설정 등 인프라와 관련된 디렉토리입니다.
