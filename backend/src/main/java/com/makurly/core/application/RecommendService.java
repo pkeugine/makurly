@@ -9,6 +9,7 @@ import com.makurly.core.domain.Item;
 import com.makurly.core.domain.ItemRepository;
 import com.makurly.core.domain.Recommend;
 import com.makurly.core.domain.RecommendRepository;
+import com.makurly.core.exception.RecommendAlreadyExistException;
 import com.makurly.core.ui.dto.PersonalRecommendResponse;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,6 +53,18 @@ public class RecommendService {
             .map(item -> new Recommend(customer, interaction, item, rate[(int) (Math.random() * 4)]))
             .collect(Collectors.toList());
         recommendRepository.saveAll(recommends);
+        return recommends.stream()
+            .map(PersonalRecommendResponse::of)
+            .collect(Collectors.toList());
+    }
+
+    public List<PersonalRecommendResponse> findPersonalRecommendByInteractionId(Long id){
+        Interaction interaction = interactionRepository.findById(id).orElseThrow();
+        List<Recommend> recommends = recommendRepository.findAllByInteraction(interaction).orElseThrow(
+            RecommendAlreadyExistException::new);
+        if (recommends.isEmpty()) {
+            throw new RecommendAlreadyExistException();
+        }
         return recommends.stream()
             .map(PersonalRecommendResponse::of)
             .collect(Collectors.toList());

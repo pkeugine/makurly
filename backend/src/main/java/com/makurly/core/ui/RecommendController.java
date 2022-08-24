@@ -3,6 +3,7 @@ package com.makurly.core.ui;
 import com.makurly.core.application.RecommendService;
 import com.makurly.core.application.WebClientService;
 import com.makurly.core.application.dto.RecommendResponse;
+import com.makurly.core.exception.RecommendAlreadyExistException;
 import com.makurly.core.ui.dto.PersonalRecommendResponse;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -26,10 +27,17 @@ public class RecommendController {
 
     @GetMapping("/{id}")
     public ResponseEntity<List<PersonalRecommendResponse>> recommend(@PathVariable Long id) {
-        RecommendResponse recommendResponse = webClientService.receiveItemsFromInteractionEx(id);
-        List<PersonalRecommendResponse> personalRecommendResponses = recommendService.findItemsByIds(recommendResponse);
-        return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(personalRecommendResponses);
+        try{
+            List<PersonalRecommendResponse> personalRecommendResponses = recommendService.findPersonalRecommendByInteractionId(id);
+            return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(personalRecommendResponses);
+        }catch (RecommendAlreadyExistException ex){
+            RecommendResponse recommendResponse = webClientService.receiveItemsFromInteractionEx(id);
+            List<PersonalRecommendResponse> personalRecommendResponses = recommendService.findItemsByIds(recommendResponse);
+            return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(personalRecommendResponses);
+        }
     }
 }
