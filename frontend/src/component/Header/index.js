@@ -67,7 +67,7 @@ function Header(logoutFunc) {
             {" "}
             <a href="/">
               <img
-                src="./img/kurly.png"
+                src="./img/makurly.png"
                 width="90"
                 height="51"
                 className="logo"
