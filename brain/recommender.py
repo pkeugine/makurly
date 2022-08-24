@@ -251,3 +251,188 @@ class implicitMF_recommender:
 		top_N_item_idx = (-self.P_hat[user_idx, :]).argsort()[:N]
 		top_N_item_score = self.P_hat[user_idx, top_N_item_idx]
 		return {'item': top_N_item_idx, 'score': top_N_item_score}
+
+
+class recommender_ens_linucb:
+	def __init__(self, models, I, U, N=5, alpha=10):  #
+
+		# alpha : tunning hyperparams(explore-exploit)
+		self.alpha = alpha
+
+		# I, U, L, N
+		self.I = I  # number of items (fixed for now)
+		self.U = U  # number of users (fixed for now)
+		self.L = len(models)  # number of models to ensemble
+		self.N = N
+
+		# list of models
+		self.models = models
+
+		# initiallizing matrices
+		self.A = np.array([np.identity(self.L)] * I)
+		self.A_inv = np.array([np.identity(self.L)] * I)
+		self.b = np.zeros((I, self.L, 1))
+		self.theta_hat = self.A_inv @ self.b
+
+	# fit method for pretraining -- Here, assume N(default 5) items are recommoended to customer.
+	## If, customer buys any of recommended item, gets credit
+	def fit(self, interaction, interaction_item):  # piece(row or rows) of interaction
+		# sort by datetime and reset_index
+		interaction = interaction.sort_values('order_date').reset_index(drop=True)
+
+		# for each row(t) of interactions :
+		for t in range(interaction.shape[0]):
+
+			interact_id = interaction.loc[t, 'id']  # interaction id at t-th interaction
+			u_t = interaction.loc[t, 'customer_id'];  # user index u at t-th interaction
+
+			# context(here, predicted scores from other RS algorithms pretrained)
+			X_u = np.array([[self.models[l].predict_score(user_idx=u_t, item_idx=i_t) for l in range(self.L)] for i_t in
+											range(1, self.I + 1)])
+			X_u = np.nan_to_num(X_u, 0)  # If nan -> 0 ( That is no recoomendation is provided.)
+
+			# r_t : reward at t-th interaction
+			## of course, reward is observed
+			r_t = np.zeros(self.I)
+
+			i_item = interaction_item[interaction_item.interaction_id == interact_id].item_id
+			q_item = interaction_item[interaction_item.interaction_id == interact_id].quantity
+
+			for i, q in zip(i_item, q_item):
+				r_t[i - 1] = q  # i-1, because python starts indexing with 0.
+
+			# calculating ucb_I (ucb for all items)
+			ucb_I = []
+			for i in range(self.I):
+				A_i = self.A[i];
+				A_inv_i = self.A_inv[i];
+				b_i = self.b[i];
+				x_i = X_u[i]
+				theta_hat_i = A_inv_i @ b_i
+
+				ucb_i = (np.transpose(theta_hat_i) @ x_i + self.alpha * np.sqrt(np.transpose(x_i) @ A_inv_i @ x_i))[0]
+				ucb_I.append(ucb_i)
+
+			ucb_I = np.array(ucb_I)
+
+			# update A, A_inv, b, theta_hat
+			N = self.N
+			update_i_idx = (-ucb_I).argsort()[:N]
+
+			for i in update_i_idx:
+				self.A[i] = self.A[i] + X_u[i].reshape(self.L, 1) @ np.transpose(X_u[i].reshape(self.L, 1))
+				self.A_inv[i] = np.linalg.inv(self.A[i])
+				self.b[i] = self.b[i] + r_t[i] * X_u[i].reshape(self.L, 1)
+				self.theta_hat[i] = self.A_inv[i] @ self.b[i]
+
+		return
+
+	def predict_score(self, user_idx, item_idx):
+
+		X_u = np.array([self.models[l].predict_score(user_idx=user_idx, item_idx=item_idx) for l in range(self.L)])
+		X_u = np.nan_to_num(X_u, 0)  # If nan -> 0 ( That is no recoomendation is provided.)
+
+		u_t = user_idx - 1;
+		i_t = item_idx - 1
+		A_i = self.A[i_t];
+		A_inv_i = self.A_inv[i_t];
+		b_i = self.b[i_t]
+		theta_hat_i = A_inv_i @ b_i
+
+		ucb_i = (np.transpose(theta_hat_i) @ X_u + self.alpha * np.sqrt(np.transpose(X_u) @ A_inv_i @ X_u))[0]
+
+		return ucb_i
+
+	def predict_topN(self, user_idx, N=5):
+		# context(here, predicted scores from other RS algorithms pretrained)
+		X_u = np.array([[self.models[l].predict_score(user_idx=user_idx, item_idx=i_t) for l in range(self.L)] for i_t in
+										range(1, self.I + 1)])
+		X_u = np.nan_to_num(X_u, 0)  # If nan -> 0 ( That is no recoomendation is provided.)
+
+		# calculating ucb_I (ucb for all items)
+		ucb_I = []
+		for i in range(self.I):
+			A_i = self.A[i];
+			A_inv_i = self.A_inv[i];
+			b_i = self.b[i]
+
+			x_i = X_u[i]
+			theta_hat_i = A_inv_i @ b_i
+
+			theta_hat_i = A_inv_i @ b_i
+			ucb_i = (np.transpose(theta_hat_i) @ x_i + self.alpha * np.sqrt(np.transpose(x_i) @ A_inv_i @ x_i))[0]
+			ucb_I.append(ucb_i)
+
+		ucb_I = np.array(ucb_I)
+
+		N = self.N
+		update_i_idx = (-ucb_I).argsort()[:N]
+		update_i = update_i_idx + 1
+
+		return {'top_N_item_id': list(update_i), 'top_N_item_score': list(ucb_I[update_i_idx])}
+
+	# predict(RS 제공) & 업데이트
+	def predict_topN_2(self, interaction, interaction_item, N=None):
+		N = self.N
+
+		# sort by datetime and reset_index
+		interaction = interaction.sort_values('order_date').reset_index(drop=True)
+
+		out_topN = []
+		# for each row(t) of interactions :
+		for t in range(interaction.shape[0]):
+			interact_id = interaction.loc[t, 'id']  # interaction id at t-th interaction
+			u_t = interaction.loc[t, 'customer_id'];  # user index u at t-th interaction
+
+			######### PREDICT PART #########
+			# predict
+			# context(here, predicted scores from other RS algorithms pretrained)
+			X_u = np.array([[self.models[l].predict_score(user_idx=u_t, item_idx=i_t) for l in range(self.L)] for i_t in
+											range(1, self.I + 1)])
+			# If nan -> 0 ( That is no recoomendation is provided.)
+			X_u = np.nan_to_num(X_u, 0)
+
+			# calculating ucb_I (ucb for all items)
+			ucb_I = []
+			for i in range(self.I):
+				A_i = self.A[i];
+				A_inv_i = self.A_inv[i];
+				b_i = self.b[i]
+
+				x_i = X_u[i]
+				theta_hat_i = A_inv_i @ b_i
+
+				theta_hat_i = A_inv_i @ b_i
+				ucb_i = (np.transpose(theta_hat_i) @ x_i + self.alpha * np.sqrt(np.transpose(x_i) @ A_inv_i @ x_i))[0]
+				ucb_I.append(ucb_i)
+
+			ucb_I = np.array(ucb_I)
+
+			update_i_idx = (-ucb_I).argsort()[:N]
+			update_i = update_i_idx + 1
+			out_topN.append({'interaction_id': interact_id,
+											 'top_N_item_id': list(update_i),
+											 'top_N_item_score': list(ucb_I[update_i_idx])})
+			######### ######### ######### #########
+			######### UPDATE PART #########
+
+			# r_t : reward at t-th interaction
+			## of course, reward is observed
+			r_t = np.zeros(self.I)
+
+			i_item = interaction_item[interaction_item.interaction_id == interact_id].item_id
+			q_item = interaction_item[interaction_item.interaction_id == interact_id].quantity
+
+			for i, q in zip(i_item, q_item):
+				r_t[i - 1] = q  # i-1, because python starts indexing with 0.
+
+			# update A, A_inv, b, theta_hat
+			update_i_idx = (-ucb_I).argsort()[:N]
+
+			for i in update_i_idx:
+				self.A[i] = self.A[i] + X_u[i].reshape(self.L, 1) @ np.transpose(X_u[i].reshape(self.L, 1))
+				self.A_inv[i] = np.linalg.inv(self.A[i])
+				self.b[i] = self.b[i] + r_t[i] * X_u[i].reshape(self.L, 1)
+				self.theta_hat[i] = self.A_inv[i] @ self.b[i]
+
+		return out_topN

@@ -1,5 +1,6 @@
 from flask import Flask, request
 import pickle
+import numpy as np
 
 app = Flask(__name__)
 
@@ -19,6 +20,8 @@ class CustomUnpickler(pickle.Unpickler):
 		if name == 'recommender_implicitMF':
 			from recommender import recommender_implicitMF
 			return recommender_implicitMF
+		if name == 'recommender_ens_linucb':
+			from recommender import recommender_ens_linucb
 		return super().find_class(module, name)
 
 
@@ -26,6 +29,7 @@ explicitMF = CustomUnpickler(open('explicitMF.pkl', 'rb')).load()
 implicitMF = CustomUnpickler(open('implicitMF.pkl', 'rb')).load()
 exMF = CustomUnpickler(open('exMF.pkl', 'rb')).load()
 imMF = CustomUnpickler(open('imMF.pkl', 'rb')).load()
+ens_linucb03 = CustomUnpickler(open('ens_linucb03.pkl', 'rb')).load()
 
 
 @app.route('/')
@@ -35,6 +39,24 @@ def hello_world():  # put application's code here
 
 @app.route('/ex-recommend', methods=['POST'])
 def recommend_explicit():
+	request_body = request.get_json()
+	user = request_body['user_idx']
+	interaction_idx = request_body['interaction_idx']
+	result = ens_linucb03.predict_topN(N=5, user_idx=user)
+	items = result["top_N_item_id"]
+	changed_items = []
+	for item in items:
+		changed_items.append(int(item))
+	response = {
+		"user_idx": user,
+		"items": changed_items,
+		"interaction_idx": interaction_idx
+	}
+	return response
+
+
+@app.route('/ex-recommend-deprecated', methods=['POST'])
+def recommend_explicit_deprecated():
 	request_body = request.get_json()
 	user = request_body['user_idx']
 	interaction_idx = request_body['interaction_idx']
@@ -59,7 +81,6 @@ def recommend_implicit():
 		"interaction_idx": interaction_idx
 	}
 	return response
-
 
 
 @app.route('/explicit-recommend', methods=['POST'])
