@@ -6,6 +6,7 @@ import com.makurly.core.ui.dto.InteractionResponse;
 import com.makurly.core.ui.dto.UserInteractionResponse;
 import java.net.URI;
 import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,12 +29,17 @@ public class InteractionController {
     public ResponseEntity<InteractionResponse> createInteraction(@RequestBody InteractionRequest interactionRequest) {
         InteractionResponse interactionResponse = interactionService.mapInteractionItem(interactionRequest);
         URI uri = URI.create(String.format("%d", interactionResponse.getId()));
-        return ResponseEntity.created(uri).body(interactionResponse);
+        return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .location(uri)
+            .body(interactionResponse);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<List<UserInteractionResponse>> findInteractionById(@PathVariable Long id) {
         List<UserInteractionResponse> userInteractionResponses = interactionService.getUserInteractions(id);
-        return ResponseEntity.ok(userInteractionResponses);
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(userInteractionResponses);
     }
 }
