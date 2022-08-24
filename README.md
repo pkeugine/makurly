@@ -22,8 +22,42 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 * 🥳 구매 완료! 🥳 여러분에게 어울리는 추천 상품 다섯개가 담겨있는 카드를 뒤집어보세요!
 * 대시보드에 들어가서 저희가 학습시킨 모델에 대한 정보도 확인하실 수 있습니다.
 
+### 위의 사용방법에 따른 흐름
+<p align="center">
+    <img src="images/main.png" width="500" /></br>
+    메인화면
+</p>
+<p align="center">
+    <img src="images/register.png" width="500" /></br>
+    회원가입
+</p>
+<p align="center">
+    <img src="images/login.png" width="500" /></br>
+    로그인 (회원가입시 입력한 이름만 입력하시면 됩니다.)
+</p>
+<p align="center">
+    <img src="images/select.png" width="500" /></br>
+    장바구니에 맛있어 보이는 제품 담기
+</p>
+<p align="center">
+    <img src="images/cart.png" width="500" /></br>
+    장바구니 확인 및 구매
+</p>
+<p align="center">
+    <img src="images/result.png" width="500" /></br>
+    구매완료
+</p>
+<p align="center">
+    <img src="images/recommend.png" width="500" /></br>
+    나만의 상점 서비스로 제품 추천 받기
+</p>
+<p align="center">
+    <img src="images/dashboard.png" width="500" /></br>
+    다양한 모델을 앙상블한 우리의 추천 모델 확인하기
+</p>
+
 ## 추가 설명
-**깃허브에 올리지 않은 정보나 파일이 있습니다.**
+**깃허브에 올리지 않은 정보나 파일이 있습니다.**</br>
 **따라서 해당 레포지토리를 clone 한 뒤 실행해도 모든 애플리케이션이 돌아가지는 않습니다.**
 
 ### brain
