@@ -83,7 +83,7 @@ KURLY HACK FESTA 2022 본선 맠컬리팀의 프로젝트입니다.</br>
 
 ### infra
 <p align="center">
-    <img src="images/infrastructure.png" width="500" /></br>
+    <img src="images/infrastructure.jpg" width="500" /></br>
     이건 인프라 구조입니다
 </p>
 <p align="center">
